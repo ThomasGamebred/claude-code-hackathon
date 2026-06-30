@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Swamp Drainers — Customer-360</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121a30; --ink:#e8eefc; --muted:#9fb0d0;
+    --accent:#39d0d8; --accent2:#7c9cff; --good:#46d39a; --warn:#ffcf5c; --bad:#ff6b8a;
+    --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;overflow:hidden}
+  #deck{height:100vh;width:100vw}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;
+    padding:6vh 8vw;animation:fade .4s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  h1{font-size:4.2vw;margin:0 0 1vh;line-height:1.05}
+  h2{font-size:2.5vw;margin:0 0 2.5vh;color:var(--accent)}
+  h2 .n{color:var(--muted);font-size:1.4vw;margin-right:.6vw;font-family:var(--mono)}
+  p,li{font-size:1.5vw;color:var(--ink);line-height:1.5}
+  .muted{color:var(--muted)}
+  .sub{font-size:1.9vw;color:var(--muted);font-weight:400}
+  .grid{display:grid;gap:2vh 2vw}
+  .cols-2{grid-template-columns:1fr 1fr}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--panel);border:1px solid #243154;border-radius:14px;
+    padding:2.2vh 1.8vw}
+  .card h3{margin:0 0 .8vh;font-size:1.5vw;color:var(--accent2)}
+  .card p,.card li{font-size:1.15vw;color:var(--muted)}
+  .kpi{font-family:var(--mono);font-size:3vw;color:var(--good);font-weight:700}
+  .kpi.small{font-size:2.2vw}
+  .pill{display:inline-block;font-family:var(--mono);font-size:1vw;padding:.3vh .8vw;
+    border-radius:20px;background:#1c2746;color:var(--accent);margin:.3vh .3vw}
+  code,pre{font-family:var(--mono)}
+  pre{background:#0a1124;border:1px solid #243154;border-radius:12px;padding:2vh 1.6vw;
+    font-size:1.05vw;color:#cfe0ff;overflow:auto;line-height:1.5}
+  .flow{display:flex;align-items:center;gap:1vw;flex-wrap:wrap;font-family:var(--mono);
+    font-size:1.2vw}
+  .zone{background:var(--panel);border:1px solid #2c3c66;border-radius:10px;
+    padding:1.4vh 1.2vw;text-align:center}
+  .zone b{color:var(--accent);display:block;font-size:1.3vw}
+  .zone span{color:var(--muted);font-size:.95vw}
+  .arrow{color:var(--accent2);font-size:1.8vw}
+  table{width:100%;border-collapse:collapse;font-size:1.1vw}
+  th,td{text-align:left;padding:.9vh 1vw;border-bottom:1px solid #243154}
+  th{color:var(--accent2)} td.s{color:var(--good);font-family:var(--mono)}
+  .tag{font-family:var(--mono);font-size:.85vw;color:var(--muted)}
+  footer{position:absolute;bottom:2.5vh;left:8vw;right:8vw;display:flex;
+    justify-content:space-between;align-items:center;color:var(--muted);font-size:1vw;
+    font-family:var(--mono)}
+  .bar{height:1.1vw;background:#1c2746;border-radius:6px;overflow:hidden;margin-top:.5vh}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .nav{position:absolute;bottom:2.2vh;right:8vw;z-index:10}
+  .nav button{background:var(--panel);color:var(--ink);border:1px solid #2c3c66;
+    border-radius:8px;font-size:1.2vw;padding:.4vh 1vw;cursor:pointer}
+  .big{font-size:2vw;line-height:1.5}
+  .lead{color:var(--warn)}
+  .good{color:var(--good)} .bad{color:var(--bad)} .accent{color:var(--accent)}
+  .center{justify-content:center}
+</style>
+</head>
+<body>
+<div id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide active center">
+    <div class="tag">CLAUDE CODE HACKATHON · SCENARIO 3 · DATA ENGINEERING</div>
+    <h1>The Swamp, Drained.</h1>
+    <p class="sub">Seven source systems. Zero agreement on what a “customer” is.<br>
+       One trustworthy golden record — with a confidence score — out the other end.</p>
+    <div style="margin-top:3vh">
+      <span class="pill">DuckDB lakehouse</span>
+      <span class="pill">parse-validate-retry</span>
+      <span class="pill">explainable matcher</span>
+      <span class="pill">eval-gated CI</span>
+      <span class="pill">PreToolUse guard</span>
+      <span class="pill">lineage MCP</span>
+    </div>
+    <p class="muted" style="margin-top:4vh;font-size:1.2vw">Team <b>Swamp Drainers</b> ·
+      Julian Martin × Claude Opus 4.8 · runs in &lt;1 min, no cloud</p>
+  </section>
+
+  <!-- 2 PROBLEM -->
+  <section class="slide">
+    <h2><span class="n">01</span>The problem is identity, not plumbing</h2>
+    <div class="grid cols-2">
+      <div>
+        <p class="big">The same person, <span class="lead">Maria Hernandez</span>, appears
+          in <b>five</b> systems:</p>
+        <pre>POS       HERNANDEZ GARCIA, MARIA J   ph 9735550142
+ecommerce Maria Hernandez            ph +1-973-555-0142
+loyalty   María J. García            ph 973.555.0142
+crm       Hernandez-Garcia, Maria…   ph (973) 555-0142
+sunset    Hernandez, Maria           ph 973-555-0142</pre>
+        <p class="muted">Four spellings, five IDs, three phone formats. One human.</p>
+      </div>
+      <div class="card">
+        <h3>And the data fights back</h3>
+        <li>Mojibake twins: <code>JÃ¼rgen MÃ¼ller</code> = <code>Jürgen Müller</code></li>
+        <li>Excel-serial dates (<code>44197</code>) mixed with <code>M/D/Y</code></li>
+        <li>A timezone bug in loyalty enrolment timestamps</li>
+        <li>Templated emails: two people, one <code>hans.weber@…</code></li>
+        <li>German money <code>1.234,56</code> vs US <code>1,234.56</code></li>
+        <li>POS drops the leading zip zero; names truncated at 20 chars</li>
+        <p class="muted" style="margin-top:1.2vh">Full inventory → <code>docs/the_mess.md</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 ARCHITECTURE -->
+  <section class="slide">
+    <h2><span class="n">02</span>The Blueprint — a lakehouse you can run on a laptop</h2>
+    <div class="flow" style="margin:2vh 0 3vh">
+      <div class="zone"><b>7 sources</b><span>pos · ecom · loyalty<br>crm · 3 acquisitions</span></div>
+      <span class="arrow">▶</span>
+      <div class="zone"><b>RAW</b><span>verbatim<br>+ lineage · immutable</span></div>
+      <span class="arrow">▶</span>
+      <div class="zone"><b>CONFORMED</b><span>one schema<br>retry loop</span></div>
+      <span class="arrow">▶</span>
+      <div class="zone" style="border-color:var(--warn)"><b style="color:var(--warn)">DQ GATE</b><span>Tripwire<br>blocks bad writes</span></div>
+      <span class="arrow">▶</span>
+      <div class="zone"><b>CURATED</b><span>golden records<br>+ confidence</span></div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><h3>DuckDB, no cloud</h3><p>One embedded file. Warehouse SQL, zero
+        infra, runs in CI. The zone pattern ports to Snowflake/BigQuery unchanged.</p></div>
+      <div class="card"><h3>Three-level CLAUDE.md</h3><p>Root pattern · per-zone rules
+        (mutation, retention, PII) · user prefs. Curated admits nothing without its contract.</p></div>
+      <div class="card"><h3>What we skipped — on purpose</h3><p>No Spark, no mesh, no
+        streaming-first, no ML matcher yet. ADRs say why. Centralize first, federate later.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 THE BIG IDEA -->
+  <section class="slide center">
+    <h2><span class="n">03</span>The one decision everything hangs on</h2>
+    <p class="big" style="margin-bottom:3vh">Split <span class="accent">deterministic guardrails</span>
+       from <span class="warn">probabilistic judgement</span> — and never mix them.</p>
+    <div class="grid cols-2">
+      <div class="card" style="border-color:var(--accent)">
+        <h3 style="color:var(--accent)">Must be TRUE → code + hooks</h3>
+        <li>Schema contracts, null/range/uniqueness</li>
+        <li>Referential integrity</li>
+        <li>Curated write-safety → <b>PreToolUse blocks it</b></li>
+        <p>A guardrail that fires “usually” is not a guardrail.</p>
+      </div>
+      <div class="card" style="border-color:var(--warn)">
+        <h3 style="color:var(--warn)">A JUDGEMENT → isolated + eval-gated</h3>
+        <li>“Are these the same person?”</li>
+        <li>One scored function: <code>resolve.score_pair</code></li>
+        <li>Gated by a scorecard with precision/recall</li>
+        <p>A fuzzy call frozen into rigid code can never improve.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:2vh">ADR-0005. Once we drew this line, every later decision had an obvious home.</p>
+  </section>
+
+  <!-- 5 INTAKE -->
+  <section class="slide">
+    <h2><span class="n">04</span>The Intake — parse · validate · <span class="accent">retry</span></h2>
+    <div class="grid cols-2">
+      <div>
+        <pre>parse  ──▶ validate ──▶ <span class="good">ok → land</span>
+            │
+        <span class="bad">error code</span> ──▶ targeted repair ──▶ retry (≤3)
+   BAD_ENCODING → fix mojibake
+   BAD_DATE     → flip day/month, reparse
+   BAD_EMAIL    → drop unparseable address
+   EMPTY_IDENTITY → quarantine (never drop)</pre>
+        <p class="muted">Per row we log <code>retry_count</code> + <code>error_type</code>.
+          Those numbers are the evidence.</p>
+      </div>
+      <div class="grid" style="align-content:start">
+        <div class="card"><h3>247 → 246 conformed</h3><p>1 quarantined (an all-empty row).
+          Nothing silently dropped.</p></div>
+        <div class="card"><h3>77 rows hit the retry loop</h3>
+          <p>BAD_DATE ×16 · BAD_EMAIL ×11 · BAD_ENCODING ×3</p></div>
+        <div class="card"><h3>Every row keeps lineage</h3><p>Trace any value back to the
+          source row it came from.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 MATCHER -->
+  <section class="slide">
+    <h2><span class="n">05</span>The Customer — an <span class="accent">explainable</span> matcher</h2>
+    <div class="grid cols-2">
+      <div>
+        <p>Block → score every candidate pair → cluster → survivorship.</p>
+        <pre>same phone + same DOB        → <span class="good">0.96 match</span>
+shared email, phone+city clash → <span class="warn">0.74 review</span>  (templated!)
+same surname + same city only  → <span class="bad">0.00 no-match</span> (co-location≠identity)
+DOB 36 years apart             → <span class="bad">0.05 no-match</span></pre>
+        <p class="muted">Boundary-first few-shot incl. a negative case → <code>matcher_prompt.md</code></p>
+      </div>
+      <div>
+        <div class="card"><h3>Golden record = one person</h3>
+          <p>Per-field <b>provenance</b> (which source won) + <b>confidence</b> (who agreed).
+             Cluster <code>match_confidence</code> = the weakest link in the merge chain.</p></div>
+        <div class="grid cols-3" style="margin-top:2vh;text-align:center">
+          <div><div class="kpi small">227</div><p class="muted">golden records</p></div>
+          <div><div class="kpi small">19</div><p class="muted">dupes collapsed</p></div>
+          <div><div class="kpi small">13</div><p class="muted">to human review</p></div>
+        </div>
+        <p class="muted center" style="margin-top:1vh">Maria’s 5 records → 1.
+          The uncertain go to a queue, never fused blindly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 EVAL -->
+  <section class="slide">
+    <h2><span class="n">06</span>The Scorecard — the eval caught <span class="accent">Claude’s own bugs</span></h2>
+    <div class="grid cols-2">
+      <div>
+        <p class="big">3 real matcher flaws were found by <code>make eval</code> failing —
+          not by reading code:</p>
+        <li class="muted">reordered names missed (“Maria Hernandez” vs “Hernandez Garcia Maria J”)</li>
+        <li class="muted">templated email caused a false-positive merge</li>
+        <li class="muted">German phone format broke a true match</li>
+        <p>Each fix had to move a number in the scorecard, or it didn’t ship.</p>
+      </div>
+      <div class="card">
+        <h3>Stratified, with false-confidence rate</h3>
+        <table>
+          <tr><th>metric</th><th>before</th><th>after</th></tr>
+          <tr><td>match precision</td><td class="bad">0.89</td><td class="s">1.00</td></tr>
+          <tr><td>match recall</td><td class="bad">0.80</td><td class="s">1.00</td></tr>
+          <tr><td>false-confidence</td><td class="bad">0.11</td><td class="s">0.00</td></tr>
+        </table>
+        <p class="muted" style="margin-top:1.5vh">Stratified by difficulty so easy cases
+          don’t inflate the headline. <b>Gates CI</b> — one defensible number for the CDO.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 GUARDRAIL + TRACE -->
+  <section class="slide">
+    <h2><span class="n">07</span>The Tripwire &amp; The Trace</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>PreToolUse hook — guardrails that bite</h3>
+        <pre>$ write to zones/curated/…
+<span class="bad">BLOCKED by curated_guard:</span> curated
+contract failing — match_confidence
+5.0 out of [0,1]. Fix &amp; rebuild.</pre>
+        <p class="muted">Curated stays trustworthy because corruption literally can’t be
+          written. Demoed live: block → fix → allow.</p>
+      </div>
+      <div class="card">
+        <h3>Lineage MCP server — 4 sharp tools</h3>
+        <li><code>trace_lineage(golden_id)</code> → all source rows + transforms</li>
+        <li><code>find_record</code> · <code>preview_table</code> · <code>get_source_schema</code></li>
+        <p class="muted">Descriptions say what each tool <i>doesn’t</i> do; errors are
+          structured (<code>isError</code> + code + guidance) so a fresh Claude recovers.</p>
+        <pre>trace_lineage("G-…") → members:
+ [pos, ecommerce, loyalty, crm, sunset]</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 SWARM -->
+  <section class="slide">
+    <h2><span class="n">08</span>The Swarm — parallel profiling → swamp health <span class="accent">0.81</span></h2>
+    <div class="grid cols-2">
+      <div>
+        <p>One profiler per source (Task subagents, each handed its context
+           <i>explicitly</i> — they don’t inherit the coordinator’s). Aggregated into a
+           single health view.</p>
+        <p class="muted">Deterministic coordinator runs the same scoring in CI:
+          <code>make profile</code>.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--accent)">swamp_health.json</h3>
+        <div style="font-family:var(--mono);font-size:1vw">
+          <div>acq_northwind <span class="bar"><i style="width:75%"></i></span> 0.75</div>
+          <div>acq_rheinland <span class="bar"><i style="width:75%"></i></span> 0.75</div>
+          <div>ecommerce&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar"><i style="width:74%"></i></span> 0.74</div>
+          <div>crm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar"><i style="width:73%"></i></span> 0.73</div>
+          <div>pos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar"><i style="width:72%"></i></span> 0.72</div>
+          <div>acq_sunset&nbsp;&nbsp;&nbsp;<span class="bar"><i style="width:71%"></i></span> 0.71</div>
+          <div>loyalty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar"><i style="width:71%"></i></span> 0.71</div>
+        </div>
+        <p class="muted" style="margin-top:1vh">completeness · freshness · key-coverage ·
+          anomalies · PII surface — per source.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 CLOSE -->
+  <section class="slide center">
+    <h2><span class="n">09</span>All nine challenges, with lineage intact</h2>
+    <div class="grid cols-3">
+      <div class="card"><h3>Production-ready</h3><p><code>make setup build eval</code>.
+        Reproducible, gated, no hand-edited data.</p></div>
+      <div class="card"><h3>Honest about limits</h3><p>13 pairs in review, 10 dangling FKs
+        flagged, matcher swap to LLM is one function.</p></div>
+      <div class="card"><h3>Claude as pair, not autopilot</h3><p>The eval caught the bugs;
+        the hook enforced the rules; the history tells the story.</p></div>
+    </div>
+    <p class="big" style="margin-top:3vh">Next: LLM adjudication on the review band ·
+       CDC ingestion · calibrated confidence · grow the golden set.</p>
+    <p class="accent" style="font-size:2.2vw;margin-top:2vh">Seven swamps in. One source of truth out.</p>
+  </section>
+
+</div>
+
+<footer>
+  <span>Team Swamp Drainers — Scenario 3</span>
+  <span id="pageno"></span>
+</footer>
+<div class="nav">
+  <button onclick="go(-1)">◀</button>
+  <button onclick="go(1)">▶</button>
+</div>
+
+<script>
+  let i = 0;
+  const slides = [...document.querySelectorAll('.slide')];
+  function show(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach((s,k)=>s.classList.toggle('active', k===i));
+    document.getElementById('pageno').textContent = (i+1)+' / '+slides.length;
+  }
+  function go(d){ show(i+d); }
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key===' ') go(1);
+    if(e.key==='ArrowLeft') go(-1);
+    if(e.key==='Home') show(0);
+    if(e.key==='End') show(slides.length-1);
+  });
+  show(0);
+</script>
+</body>
+</html>
