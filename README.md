@@ -22,7 +22,7 @@ What exists now that didn't before:
 - A medallion pipeline (`raw → conformed → curated`) with **end-to-end lineage** — any
   value in a golden record walks back to the exact source row it came from.
 - A **parse-validate-retry** intake loop that turns 247 messy rows into 246 conformed
-  rows (1 quarantined), logging *why* each of 77 retried rows needed repair.
+  rows (1 quarantined), logging *why* each of the 33 retried rows needed repair.
 - An **explainable entity matcher** (blocking → scored pairs → survivorship) producing
   **227 golden records** from 246 rows, with per-field provenance + confidence and a
   human review queue for the genuinely-uncertain.

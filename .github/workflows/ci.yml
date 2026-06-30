@@ -1,0 +1,37 @@
+name: customer-360-ci
+
+# The matcher eval is the gate. If precision / recall / false-confidence regress
+# below the thresholds in eval/score_matcher.py, the job fails and the merge is blocked.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  build-and-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pytz tzdata pytest
+
+      - name: Unit tests (normalizers + matcher rules)
+        run: python -m pytest -q tests/
+
+      - name: Build warehouse (raw -> conformed -> [DQ gate] -> curated)
+        run: python scripts/run_pipeline.py
+
+      - name: Matcher scorecard (GATE — fails on regression)
+        run: python eval/score_matcher.py
+
+      - name: Data-quality report (informational)
+        run: python -m pipeline.dq
+
+      - name: Swamp-health profile (informational)
+        run: python -m pipeline.profile
