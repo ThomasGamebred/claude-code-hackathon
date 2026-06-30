@@ -107,6 +107,9 @@ def normalize_phone(phone: str | None) -> str:
     digits after a country code). Good enough to use as a blocking/match key."""
     if not phone:
         return ""
+    # cut extensions ('x4', 'ext. 12') before stripping, or the ext digits corrupt
+    # the number (e.g. '(312) 555-0188 x4' -> 31255501884).
+    phone = re.split(r"\s*(?:x|ext\.?|#)\s*\d+", phone, flags=re.IGNORECASE)[0]
     digits = re.sub(r"\D", "", phone)
     # strip obvious extensions handled by the 'x' split upstream isn't done here;
     # drop a leading US country code
