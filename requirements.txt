@@ -1,0 +1,7 @@
+# Fabrikam Customer-360 lakehouse — runtime deps
+# Intentionally tiny: the whole pipeline runs on DuckDB + the Python stdlib.
+# No pandas, no Spark, no cloud. "Docker and nothing else" — or just a venv.
+duckdb==1.5.4
+
+# The lineage MCP server (optional, Challenge 8 / The Trace)
+mcp>=1.2.0
