@@ -1,173 +1,93 @@
-# Claude Code Hackathon
+# Team Swamp Drainers
 
-## The Point
-
-This is a hack. You get a team, a scenario, and Claude Code. The scenarios are enterprise-flavored briefs: a monolith nobody understands, a migration nobody agrees on, seven systems that can't agree on what a customer is. Real problems, compressed.
-
-There's no prescribed path. Each scenario sketches a handful of challenges worth working toward. How you get there, what stack you pick, what you skip, what you invent on top is up to you. We care about ambition and judgment, not box-checking.
-
----
-
-## The Setup
-
-Pick one scenario. Work with your team. Get as far as you can.
-
-Each scenario sketches a handful of challenges. You probably won't do them all, and that's the point. **Depth beats breadth.** Pick the ones that interest you, work in parallel where you can, and let Claude help you coordinate.
-
----
-
-## How Your Team Works
-
-The scenarios span the SDLC, so there's meaningful work for PM, architect, dev, test, and platform. You won't have one of each, and that's fine. **Play every role, regardless of your day job.** Claude Code doesn't care what your title is, and a lot of what makes the hack interesting is watching the tool perform in parts of the work you don't normally touch.
-
-Divide the challenges up early. Share a running `CLAUDE.md` so everyone teaches the tool the same conventions. Commit often. The commit history is part of the submission and part of how the judges read the journey.
-
----
-
-## The Rules
-
-1. **Tech stack is yours to choose.** One exception: Scenario 5 requires the **Claude Agent SDK**. Use Claude to help you learn it, or to migrate if you're coming from another framework.
-2. **You may need to build starter code, data, or documents.** If the scenario says "a 12-year-old monolith exists," you generate it. That's part of the job. Some scenarios offer optional starter repos. Use them or don't.
-3. **Play every role.** Your team needs a PM, architect, developer, tester, data engineer, and infra engineer whether you staffed for it or not.
-4. **Commit history is evidence.** We want to see the journey, not just the destination.
-5. **`CLAUDE.md` is your friend.** Teach it your conventions early.
-6. **Document your work.** Your repo must include a `README.md` (template below) explaining what you built and what you'd do next.
-7. **Build a presentation.** Use Claude Code to generate an HTML presentation you *could* deliver if you win the judging. It lives in your repo whether you present or not.
-8. **Claude will judge.** At the end, Claude evaluates submissions. A handful of teams present live.
-
----
-
-## The Scenarios
-
-| \# | Scenario | One-liner |
-| :---- | :---- | :---- |
-| 1 | **[Code Modernization](01-code-modernization.md)** | A monolith nobody understands. The board wants it "modernized." |
-| 2 | **[Cloud Migration](02-cloud-migration.md)** | On-prem to cloud. The CFO and CTO disagree on how. |
-| 3 | **[Data Engineering](03-data-engineering.md)** | Seven systems. Zero agreement on what a "customer" is. |
-| 4 | **[Data Analytics](04-data-analytics.md)** | 40 dashboards. One metric. Four different answers. |
-| 5 | **[Agentic Solution](05-agentic-solution.md)** (Claude Agent SDK) | 200 requests a day, triaged by hand. Build the agent. |
-
----
-
-## Techniques to Reach For
-
-These are the patterns the Claude Code Architecture certification tests on. No scenario requires them, and no challenge dictates which to use. They're here because a lot of teams also want the hack to double as cert practice. Pick two or three you want to get reps on, and reach for them inside whichever challenges you pursue.
-
-**Agentic Architecture**
-
-- Coordinator plus specialist subagents via the Task tool, with context passed *explicitly* in each call (Task subagents don't inherit coordinator context).
-- Stop conditions that are real signals, not "parse the text" or "iteration cap."
-- `fork_session` to try two paths on the same input and compare.
-
-**Tool Design & MCP**
-
-- Tool descriptions that say what the tool *does* and what it *does not*. Input formats, edge cases, example queries.
-- Structured error responses (`isError: true` with a reason code and guidance) so the agent can recover gracefully.
-- Keep each specialist's tool count small. Reliability tends to drop once an agent has more than a handful.
-- An MCP server over whatever system you built, so a fresh Claude session picks the right tool on the first try.
-
-**Claude Code Config**
-
-- Three-level `CLAUDE.md`: user (personal preferences), project (shared, in VCS), directory (per-module specifics).
-- Custom slash commands *and* skills, used distinctly. A command runs a playbook; a skill captures reusable guidance.
-- Plan Mode for anything reversible-dangerous; direct execution for the safe paths. Defend the default.
-- Non-interactive Claude Code in CI, with scoped tools and no write access to production paths.
-
-**Prompt Engineering**
-
-- Explicit criteria in place of vague modifiers. "Material," "significant," and "recent" are usually a signal that the definition needs sharper thresholds.
-- Few-shot examples with a negative case and a boundary case. Two sharp examples outperform eight fuzzy ones.
-- `tool_use` with a JSON Schema for anything that must parse. Don't prompt-for-JSON.
-- Validation-retry loop: structured validator checks the output, errors are fed back, Claude retries up to N times. Log retry count and error type.
-
-**Context Management**
-
-- Hooks for deterministic guardrails (`PreToolUse` to block, `PostToolUse` to redact). Prompts for probabilistic preferences. An ADR on why each is which is worth writing; the distinction shows up repeatedly on the exam.
-- Escalation rules that are category plus confidence plus impact, not "when the agent isn't sure."
-- Stratified sampling and field-level confidence when humans review.
-
----
-
-## The Judging
-
-Claude does the first pass. Top teams present live.
-
-**What definitely gets read:**
-
-1. Your `README.md`
-2. Your `presentation.html`
-3. Your `CLAUDE.md`
-
-These are your pitch. Don't leave them to the end. If Claude only sees those three files, it should still understand what you built, why it matters, how far you got, and how you taught the tool to work your way. We may go deeper into the repo, we may not. Assume those three carry the weight.
-
-**What we're looking for** (final categories will be a surprise!, but think along these lines):
-
-- **Most production-ready.** Could hand it to an ops team Monday.
-- **Best architecture thinking.** ADRs, diagrams, decisions someone will thank you for later.
-- **Best testing.** Not coverage. Adversarial thinking, edge cases, evals.
-- **Best product work.** Stories that are actually stories. Docs that persuade.
-- **Most inventive Claude Code use.** Subagents, hooks, skills, something we didn't expect.
-- **Wildcards:** best CI/CD, best legacy archaeology, best "what if this goes wrong" thinking, furthest through the challenges with quality intact, team that questioned a scenario requirement and was *right*.
-
----
-
-## Submission
-
-You need three files:
-
-1. **`README.md`** tells the story. Use the template below.
-2. **`CLAUDE.md`** so we can see how you taught Claude Code to work your way.
-3. **`presentation.html`**, your HTML deck built with Claude Code, ready to present if called.
-
-**Preferred:** put the three files in a folder named for your table and team (for example `Table1_SonnetSlayers/`) and upload the folder to the link provided at your session.
-
-**Alternative:** if a folder upload isn't supported, zip the three files into an archive with the same naming convention (for example `Table1_SonnetSlayers.zip`) and upload that instead.
-
-Either way, **one submission per team**.
-
-**NO CLIENT OR INTERNAL DATA.** Anything in the submission must be safe to share.
-
----
-
-## README Template
-
-Copy this into your repo's `README.md` and fill it in as you go, not at the end.
-
-```
-# Team <name>
+> Seven systems. Zero agreement on what a "customer" is. One trustworthy record out the other end.
 
 ## Participants
-- Name (role(s) played today)
-- Name (role(s) played today)
-- Name (role(s) played today)
+- Julian Martin (PM · Architect · Data Engineer · Tester — played every role)
+- Claude Opus 4.8 (pair engineer, via Claude Code)
 
 ## Scenario
-Scenario <#>: <title>
+**Scenario 3: Data Engineering — "The Swamp."** Fabrikam Retail has seven source systems
+(POS, e-commerce, loyalty, CRM, and three acquisitions). Same person, four IDs, two
+spellings. The new CDO wants a single source of truth.
 
 ## What We Built
-A couple of paragraphs. What exists in this repo that didn't exist when you
-started. What runs, what's scaffolding, what's faked.
+A **runnable lakehouse** that ingests all seven sources, conforms them to one schema,
+resolves duplicate humans into **golden customer records with confidence scores**, and
+guards the whole thing with deterministic data-quality checks — all on **DuckDB + the
+Python stdlib**, no cloud, no Spark. `make setup && make build && make eval` reproduces
+everything from the raw files in under a minute.
+
+What exists now that didn't before:
+- A medallion pipeline (`raw → conformed → curated`) with **end-to-end lineage** — any
+  value in a golden record walks back to the exact source row it came from.
+- A **parse-validate-retry** intake loop that turns 247 messy rows into 246 conformed
+  rows (1 quarantined), logging *why* each of 77 retried rows needed repair.
+- An **explainable entity matcher** (blocking → scored pairs → survivorship) producing
+  **227 golden records** from 246 rows, with per-field provenance + confidence and a
+  human review queue for the genuinely-uncertain.
+- A **matcher eval** (precision / recall / **false-confidence rate**, stratified) that
+  **runs in CI and gates merges** — and which drove three real matcher fixes during the build.
+- A **`PreToolUse` hook** that blocks any write to the curated zone while its schema
+  contract is failing, plus a **lineage MCP server** and a **parallel profiling swarm**.
+
+What's faked / scaffolding: the entity *matcher* is deterministic rather than an LLM call
+(so the eval is reproducible offline) — the few-shot prompt it implements is in
+`pipeline/matcher_prompt.md` and the swap is one function. The "CDC stream" and "flaky
+API" intake shapes are modelled over static files.
 
 ## Challenges Attempted
 | # | Challenge | Status | Notes |
 |---|---|---|---|
-| 1 | The <name> | done / partial / skipped | |
-| 2 | | | |
+| 1 | The Mess | done (inspect) | Defects catalogued in `docs/the_mess.md`; the provided data is genuinely nasty (mojibake twins, Excel-serial dates, templated emails, a timezone bug). |
+| 2 | The Blueprint | done | Lakehouse ADRs incl. "what we chose **not** to do"; three-level `CLAUDE.md`. |
+| 3 | The Intake | done | All 7 sources → raw with lineage; parse-validate-retry loop with per-row `retry_count` + `error_type`. |
+| 4 | The Customer | done | Survivorship + golden record with field-level confidence; boundary-first few-shot incl. a negative case. |
+| 5 | The Tripwire | done | DQ checks tagged break-vs-alert; `PreToolUse` hook blocks curated writes until the contract passes. |
+| 6 | The Catalog | done | Analyst-facing entries in `catalog/`, each linked to its producer contract. |
+| 7 | The Scorecard | done | Golden labelled pairs; precision/recall/false-confidence, stratified; **gates CI**. |
+| 8 | The Trace | done | MCP server: `preview_table`, `trace_lineage`, `find_record`, `get_source_schema` with structured errors. |
+| 9 | The Swarm | done | Parallel per-source profiling → swamp-health dashboard; explicit per-subagent context in `docs/swarm.md`. |
 
 ## Key Decisions
-Biggest calls you made and why. Link into `/decisions` for the full ADRs.
+The big one: **deterministic guardrails in code, probabilistic judgement isolated and
+eval-gated.** DQ checks and the curated contract are exact, so they're code + a hook.
+Entity matching is fuzzy, so it's one scored function behind a scorecard. We never put a
+guardrail in a prompt or a fuzzy call in a hook. Full reasoning in `decisions/`:
+- [ADR-0001](decisions/0001-lakehouse-on-duckdb.md) — lakehouse on DuckDB (+ what we skipped: Spark, mesh, streaming, ML).
+- [ADR-0002](decisions/0002-three-level-claude-md-and-survivorship.md) — three-level `CLAUDE.md`, survivorship, confidence.
+- [ADR-0005](decisions/0005-guardrails-in-code-preferences-in-prompts.md) — hooks vs prompts: the determinism split.
 
 ## How to Run It
-Exact commands. Assume the reader has Docker and nothing else.
+Assumes `python3`. No Docker needed (DuckDB is embedded).
+```bash
+make setup     # create venv, install duckdb (+ pytz)
+make build     # raw → conformed → [DQ gate] → curated golden records
+make eval      # score the matcher against the golden set (the CI gate)
+make profile   # parallel source profiling → swamp-health dashboard
+make dq        # data-quality report
+make test      # unit tests for normalizers + matcher
+```
+Then poke the warehouse: `.venv/bin/python -c "import duckdb; print(duckdb.connect('warehouse.duckdb').sql('SELECT full_name, member_sources, match_confidence FROM curated_customer WHERE member_count>1'))"`
 
 ## If We Had More Time
-What you'd tackle next, in priority order. Be honest about what's held
-together with tape.
+1. **Swap the matcher to a real LLM call** for the `[0.72, 0.90)` review band only —
+   deterministic rules decide the easy 90%, Claude adjudicates the hard 10% (the prompt
+   already exists). Keep the eval as the gate.
+2. **Incremental / CDC ingestion** instead of full rebuilds; the lineage model already supports it.
+3. **Resolve the 10 dangling `loyalty → POS` FKs** the Tripwire flags (currently an alert).
+4. **Grow the golden set to ~200 pairs** with active learning from the review queue, and
+   add calibration so `match_confidence` is a true probability.
+5. Persist zones as Parquet on object storage to make the "lakehouse" literal.
 
 ## How We Used Claude Code
-What worked. What surprised you. Where it saved the most time.
-```
-
----
-
-**Pick a scenario. Start building.**
+- **The eval caught Claude's own bugs.** Three matcher flaws (reordered-name miss,
+  templated-email false-positive, German-phone-format miss) were found by `make eval`
+  failing, not by us reading code. The harness, not the human, drove the fixes.
+- **Hooks made guardrails real.** The `PreToolUse` curated guard turned "please don't
+  corrupt curated" from a hope into an enforced invariant we could demo (block → fix → allow).
+- **Three-level `CLAUDE.md`** kept the agent honest about zone rules — it stopped trying
+  to "just clean one field" in the raw zone once the raw-zone `CLAUDE.md` said not to.
+- **Commit-as-we-go** — the history is the journey: scaffold → intake → matcher → eval-driven fixes → blueprint.
+- Biggest surprise: how much leverage came from *separating determinism from judgement*
+  up front. Once that line was drawn, every later decision had an obvious home.
