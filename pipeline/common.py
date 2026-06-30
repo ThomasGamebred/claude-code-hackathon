@@ -54,7 +54,7 @@ def has_lossy_encoding(s: str | None) -> bool:
 
 
 # --------------------------------------------------------------------------- names
-_NAME_NOISE = re.compile(r"[.,]")
+_NAME_NOISE = re.compile(r"[.,'’\-]")   # punctuation that splits/joins names inconsistently
 _WS = re.compile(r"\s+")
 # tokens that are not name content
 _NAME_DROP = {"jr", "sr", "ii", "iii", "iv", "mr", "mrs", "ms", "dr"}
