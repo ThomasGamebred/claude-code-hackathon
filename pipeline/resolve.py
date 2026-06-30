@@ -70,6 +70,19 @@ def jaro_winkler(s1: str, s2: str) -> float:
     return jaro + prefix * 0.1 * (1 - jaro)
 
 
+def name_agreement(a: str, b: str) -> float:
+    """How much two normalized names agree. max() of:
+      - Jaro-Winkler over the whole string (catches typos/spelling), and
+      - token containment (shared tokens / smaller token set), which catches
+        reorderings and extra tokens like middle names / maiden names:
+        'hernandez maria' vs 'garcia hernandez j maria' -> 1.0."""
+    if not a or not b:
+        return 0.0
+    ta, tb = set(a.split()), set(b.split())
+    containment = len(ta & tb) / min(len(ta), len(tb)) if ta and tb else 0.0
+    return max(jaro_winkler(a, b), containment)
+
+
 # --------------------------------------------------------------- pairwise scoring
 def score_pair(a: dict, b: dict) -> tuple[float, list[str]]:
     """Return (score, reasons). Encodes matcher_prompt.md rules."""
@@ -78,7 +91,19 @@ def score_pair(a: dict, b: dict) -> tuple[float, list[str]]:
 
     same_phone = a["phone_norm"] and a["phone_norm"] == b["phone_norm"]
     same_email = a["email_norm"] and a["email_norm"] == b["email_norm"]
-    name_sim = jaro_winkler(a["name_norm"], b["name_norm"]) if a["name_norm"] and b["name_norm"] else 0.0
+    name_sim = name_agreement(a["name_norm"], b["name_norm"])
+
+    # A shared email is a WEAK identifier when the two records also carry a
+    # conflicting phone AND a conflicting city — that pattern is a templated /
+    # shared / family address (e.g. Sunset's firstname.lastname@catalog domain),
+    # not proof of one person. Downgrade unless a DOB also agrees.
+    phone_conflict = a["phone_norm"] and b["phone_norm"] and a["phone_norm"] != b["phone_norm"]
+    city_conflict = a["city"] and b["city"] and a["city"].lower() != b["city"].lower()
+    templated_email = same_email and phone_conflict and city_conflict and not (
+        a["dob"] and a["dob"] == b["dob"])
+    if templated_email:
+        reasons.append("shared email but phone+city conflict (likely templated) -> review")
+        return round(min(0.80, 0.50 + name_sim * 0.3), 4), reasons
 
     # Rule 4: a clean DOB conflict is a hard negative (allow obvious digit-swap noise).
     if a["dob"] and b["dob"] and a["dob"] != b["dob"]:
@@ -102,7 +127,13 @@ def score_pair(a: dict, b: dict) -> tuple[float, list[str]]:
 
     # Rule 2/3: without a strong id, demand name + a second weak signal.
     if not (same_phone or same_email):
-        if same_dob and name_sim >= 0.88:
+        same_geo = (a["zip"] and a["zip"] == b["zip"]) or (
+            a["city"] and b["city"] and a["city"].lower() == b["city"].lower())
+        if same_dob and name_sim >= 0.95 and same_geo:
+            # DOB + near-identical name + same place is a strong triple even when
+            # the phone format differs (e.g. German +49 vs 0 trunk prefix).
+            score = max(score, 0.92); reasons.append("same DOB + name + geo triple")
+        elif same_dob and name_sim >= 0.88:
             score = max(score, 0.86); reasons.append(f"same DOB + close name ({name_sim:.2f})")
         elif name_sim >= 0.93 and a["zip"] and a["zip"] == b["zip"]:
             score = max(score, 0.74); reasons.append(f"very close name + same zip ({name_sim:.2f})")

@@ -1,0 +1,17 @@
+pair_id,a_source,a_id,b_source,b_id,label,stratum,note
+P01,crm,0035000abc,pos,100118,match,easy,same phone + same DOB
+P02,acq_rheinland,RH-1001,loyalty,LY-50044,match,easy,same email + same phone + same DOB
+P03,pos,100244,acq_northwind,NW000771,match,easy,same phone + same DOB (Sean O'Brien)
+P04,ecommerce,ec_8847,loyalty,LY-50019,match,easy,same email + same phone (Bob/Robert Smith)
+P05,ecommerce,ec_9001,loyalty,LY-50061,match,easy,same email + same phone (David Lee)
+P06,pos,100118,ecommerce,ec_8841,match,medium,same phone; ec has no DOB; name variant
+P07,pos,100244,acq_sunset,SC1007,match,medium,same phone; sunset has no DOB; O'Brien punctuation
+P08,crm,0035000abc,loyalty,LY-50012,match,hard,same phone+DOB but different email and translated name (Maria/María García)
+P09,crm,0035000def,loyalty,LY-50070,match,hard,same phone+DOB but wildly different email (ecarter vs bethnguyen) and name (Carter/Liz Carter)
+P10,acq_rheinland,RH-1001,acq_rheinland,RH-1188,match,hard,mojibake twin; identical name+DOB but phone format (+49 vs 0) and email differ
+N01,acq_northwind,NW000902,acq_northwind,NW000903,no_match,hard,same surname Jones; different given name/city; DOB 36y apart
+N02,acq_sunset,SC1200,loyalty,LY-50100,no_match,hard,boundary: Chicago/60601 co-location only; different name/phone/email
+N03,acq_northwind,NW000900,acq_sunset,SC1007,no_match,medium,shared first name Sean only; different surname/city/phone
+N04,crm,0035000jkl,ecommerce,ec_8847,no_match,medium,shared surname Smith only; different city; no shared id
+U01,acq_sunset,SC1203,acq_sunset,SC1211,unclear,hard,identical templated email hans.weber@sunsetcatalog.example but different city/phone — email may not be a real identifier
+N05,acq_sunset,SC1203,acq_northwind,NW000903,no_match,hard,shared first name Hans + same city Austin (classic false-positive trap); surnames Weber vs Jones differ
