@@ -13,12 +13,17 @@
 
 ## Scenario
 
-**Scenario 3 — Data Engineering: Single Customer View.** Fabrikam Retail has
-seven source systems that disagree on what a customer is. Same person, four
-IDs, two spellings, one mojibake'd umlaut. The CDO wants one trustworthy
-record. We picked a lakehouse architecture, a deterministic-plus-fuzzy
-matcher, and a React frontend that lets you actually *see* the mess collapse
-into a golden record.
+**Scenario 3 — Data Engineering: Single Customer View.** Seven systems.
+Zero agreement on what a customer is. Same person under four IDs, two
+spellings, one mojibake'd umlaut. The CDO wants one trustworthy record.
+
+We picked a three-zone lakehouse on DuckDB, a deterministic-plus-fuzzy
+matcher with field-level survivorship, a React frontend that lets you
+actually *see* the mess collapse into a golden record, an MCP server
+exposing lineage tools to a fresh Claude session, and an eval harness in
+CI that produces one defensible number for the CDO. All eight pursuable
+challenges attempted, seven done, the ninth (The Swarm) deliberately
+deferred.
 
 ## What We Built
 
@@ -64,8 +69,8 @@ for the full architecture write-up.
 | 5 | The Tripwire | done | Schema drift (BLOCK), null explosion / volume / RI (ALERT). `PreToolUse` hook in `.claude/hooks/curated_gate.sh`. |
 | 6 | The Catalog | done | `docs/catalog/customer.md` and `docs/catalog/sources.md`. Analyst-readable, linked to ADR-0001 §3. |
 | 7 | The Scorecard | done | 20+ stratified pairs, precision / recall / false-confidence-rate, in CI. |
-| 8 | The Trace | partial | Lineage path is in the API and rendered on the frontend. No MCP server yet — that's "if we had more time". |
-| 9 | The Swarm | skipped | Designed it on paper as per-source Task subagents emitting structured profile reports; ran out of clock to wire it. |
+| 8 | The Trace | done | Six-tool MCP server in [`mcp/`](mcp/) (`list_sources`, `preview_table`, `find_record`, `trace_lineage`, `get_source_schema`, `quality_status`) — descriptions written so a fresh Claude session picks the right tool first try. Lineage also rendered in the frontend. |
+| 9 | The Swarm | skipped | Designed it on paper as per-source Task subagents emitting structured profile reports; deferred deliberately — eval depth on the matcher beats breadth on a ninth challenge. |
 
 ## Key Decisions
 
@@ -143,43 +148,74 @@ pos            ┘
 
 In priority order:
 
-1. **MCP server for trace tools (Challenge 8).** `preview_table`,
-   `trace_lineage`, `find_record`, `get_source_schema` over the curated
-   warehouse. A fresh Claude session should pick the right tool first try.
-2. **Streaming ingestion.** Today every source is batch. Add a CDC stream
+1. **Streaming ingestion.** Today every source is batch. Add a CDC stream
    shape (POS) and a flaky-API shape (loyalty) with backoff + retry budget.
-3. **Stewardship UI persistence.** Today the review buttons log the
-   decision but the matcher doesn't re-evaluate in-place. Wire it through.
-4. **KMS-backed PII hashes.** The salt is currently `DEMO_ONLY` in the
+2. **Stewardship UI persistence.** Review buttons log the decision but the
+   matcher doesn't re-evaluate the cluster in-place. Wire it through.
+3. **KMS-backed PII hashes.** The salt is currently `DEMO_ONLY` in the
    repo. Move it to an envelope-encrypted key.
-5. **Address standardization.** We rely on rapidfuzz; USPS/CASS would lift
+4. **Address standardization.** We rely on rapidfuzz; USPS/CASS would lift
    recall on the boundary band.
-6. **Multi-tenancy.** Today everything is global. Tenant-scoped tables and
+5. **Multi-tenancy.** Today everything is global. Tenant-scoped tables and
    row-level filters in the API.
-7. **The Swarm (Challenge 9).** Per-source profiling subagents that emit
+6. **The Swarm (Challenge 9).** Per-source profiling subagents that emit
    structured reports, aggregated into a "swamp health" dashboard.
+7. **`fork_session` on the matcher.** Run two scoring schemes on the same
+   golden set in parallel, compare false-confidence-rate, pick a winner.
 
 ## How We Used Claude Code
 
-- **Subagents for parallel build.** Six person-roles in `plan.md` map to
-  six Claude Code subagents working in parallel branches. Coordinator
-  passed each one a tight context envelope: the ADR, the per-zone
-  CLAUDE.md, the API contract.
+- **Parallel subagents with explicit context envelopes.** The scaffold
+  landed in one coordinator turn that fanned out **four subagents at
+  once**: one wrote the backend (pipeline + FastAPI + tests), one wrote
+  the frontend (Vite/React/TS + mock-mode), one wrote the glue (Makefile,
+  README, presentation, hooks, catalog), one wrote the MCP server.
+  Each got the ADR, the relevant per-zone `CLAUDE.md`, and the API
+  contract — no inherited coordinator context, no overlap. ~3 minutes,
+  ~50 files.
 - **Hooks for the curated-zone gate.** `.claude/hooks/curated_gate.sh`
   fires on `PreToolUse` for `Write` calls under `warehouse/curated/`. If
   `quality.assert_contracts_pass()` is red, the write is blocked. This is
   the cleanest split between deterministic guardrails (hooks) and
-  probabilistic preferences (prompts).
-- **Three-level CLAUDE.md.** Root file at `CLAUDE.md` carries the project
-  conventions. Per-zone files under `warehouse/<zone>/CLAUDE.md` carry the
-  things that differ (mutation rule, PII policy, retention). User-level
-  is the engineer's personal preferences.
+  probabilistic preferences (prompts) — the distinction the cert tests on.
+- **Three-level CLAUDE.md.** Root at `CLAUDE.md` carries the project
+  pattern. Per-zone files under `warehouse/<zone>/CLAUDE.md` carry what
+  *differs* (mutation rule, PII policy, retention). When Claude is asked
+  to write to a zone it reads the local file first.
+- **MCP server with tool-design discipline.** `mcp/` exposes six tools
+  with descriptions that include input formats, edge cases, and an
+  explicit "Does NOT" clause per tool. Structured `reason_code` errors so
+  the agent can recover gracefully. Six tools, not twelve — reliability
+  drops past a handful.
 - **Eval harness in CI.** `backend/tests/test_matcher_eval.py` runs on
-  every PR. Precision, recall, false-confidence rate, stratified — one
-  defensible number for the CDO.
-- **Validation-retry loop on date parsing.** Strict format -> dateutil
-  fallback -> reject row with `reject_reason` + `reject_field`. Logged
-  retry counts become evidence in the catalog.
+  every PR against 24 stratified golden pairs (easy / hard / boundary /
+  negative). Precision, recall, **false-confidence-rate** — one
+  defensible number for the CDO when she asks "how good is this".
+- **Validation-retry loop on parsing.** Strict format → dateutil fallback
+  → reject row to `conformed._reject` with `reject_reason` and
+  `reject_field`. Retry counts become evidence in the catalog.
+- **Few-shot with a negative case.** `golden_pairs.csv` includes the
+  matcher's hardest negatives by design: Sean Williams ≠ Sean Rodriguez,
+  Jurgen Schmidt Berlin ≠ Jurgen Schmidt Köln. Two sharp boundary
+  examples beat a paragraph of "be conservative".
+
+## What We Tried to Break
+
+A short list of adversarial moves the team made against its own pipeline,
+because "best testing" isn't coverage:
+
+- **The data already lies.** `pos/` has Mickey Mouse with $9,999,999
+  lifetime spend and DOB in 2085. Vandelay & Art's `6/31/22` date. Test
+  records on a blocklist, sanity bounds on DOB, spend-outlier check.
+- **Encoding round-trips.** `acq_rheinland/` mixes UTF-8 and cp1252 *per
+  row*. `acq_sunset/` and `pos/` have unrecoverable mojibake (`Bj�rn`,
+  `D�ANGELO`). Ingest flags `_encoding_lossy=True`; the matcher
+  down-weights name when set.
+- **Schema drift.** A schema-drift check (BLOCK) compares raw column lists
+  to recorded contracts before curated rebuilds. We hand-broke the contract
+  to confirm the curated zone refuses to advance.
+- **Same name, different person.** The negative golden pairs ensure the
+  matcher doesn't over-merge on first-name + city alone.
 
 ---
 

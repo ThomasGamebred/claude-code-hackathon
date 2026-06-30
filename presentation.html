@@ -87,7 +87,7 @@
   <div class="num">SCENARIO 3 — DATA ENGINEERING</div>
   <h1 class="title font-display">Seven Systems,<br/><span class="text-gold-400">One Customer</span>.</h1>
   <div class="rule"></div>
-  <p class="text-mute text-lg max-w-2xl">Fabrikam Retail has seven source systems and zero agreement on what a customer is. We built one. On a laptop. In an afternoon.</p>
+  <p class="text-mute text-lg max-w-2xl">Fabrikam Retail has seven source systems and zero agreement on what a customer is. We built one. On a laptop. In an afternoon. Eight of nine challenges done — the ninth deliberately deferred.</p>
   <p class="mt-12 text-mute"><span class="text-gold-300">Team SCV-Swampers</span> &mdash; Hackathon submission</p>
 </section>
 
@@ -223,19 +223,35 @@
   <p class="mt-6 text-mute text-sm">Headline cases: Sean O'Brien (4 sources), Maria Hernandez-Garcia (4), J&uuml;rgen M&uuml;ller mojibake duplicate, David/Dave/D Lee + amazon boundary, Sean Williams &ne; Sean Rodriguez, Jurgen Schmidt Berlin &ne; K&ouml;ln &mdash; the matcher must not over-merge.</p>
 </section>
 
-<!-- Slide 8: What's Next -->
+<!-- Slide 8: How We Built It -->
 <section class="slide">
-  <div class="num">08 / WHAT'S NEXT</div>
+  <div class="num">08 / HOW WE BUILT IT</div>
+  <h2 class="title font-display">Four subagents. One coordinator turn.</h2>
+  <div class="rule"></div>
+  <p class="max-w-3xl text-lg">The scaffold landed in a single coordinator turn that fanned out <span class="text-gold-300">four Claude Code subagents in parallel</span>. Each got the ADR, the relevant per-zone <span class="font-mono text-gold-300">CLAUDE.md</span>, and the API contract &mdash; nothing else. No inherited coordinator context. No file-write overlap.</p>
+<pre class="ascii mt-4">
+  coordinator (this conversation)
+       |
+       +-- subagent #1: backend     -> pipeline + FastAPI + tests + golden_pairs.csv
+       +-- subagent #2: frontend    -> Vite/React/TS + 4 pages + mock-mode
+       +-- subagent #3: glue        -> Makefile, README, presentation, hook, catalog
+       +-- subagent #4: mcp server  -> 6 trace/preview tools w/ rich descriptions
+
+  ~3 minutes wall-clock. ~50 files. Zero merge conflicts because the
+  envelope to each subagent excluded the others' file paths.
+</pre>
+  <p class="mt-4 text-mute text-sm">Coordinator pattern, explicit context passing, tool-design discipline (six MCP tools, not twelve), hooks for guardrails, prompts for preferences. The cert-tested patterns, in one repo.</p>
+</section>
+
+<!-- Slide 9: What's Next -->
+<section class="slide">
+  <div class="num">09 / WHAT'S NEXT</div>
   <h2 class="title font-display">If we had more time.</h2>
   <div class="rule"></div>
   <div class="grid grid-cols-2 gap-x-12 gap-y-5 mt-4 text-lg">
     <div>
       <div class="text-gold-300 font-mono text-sm">STREAMING</div>
       <p class="mt-1">CDC shape for POS; flaky-API shape for loyalty with backoff + retry budget.</p>
-    </div>
-    <div>
-      <div class="text-gold-300 font-mono text-sm">MCP FOR LINEAGE</div>
-      <p class="mt-1">An MCP server over <span class="font-mono">preview_table</span>, <span class="font-mono">trace_lineage</span>, <span class="font-mono">find_record</span>, <span class="font-mono">get_source_schema</span>. Challenge 8.</p>
     </div>
     <div>
       <div class="text-gold-300 font-mono text-sm">STEWARDSHIP PERSISTENCE</div>
@@ -251,14 +267,18 @@
     </div>
     <div>
       <div class="text-gold-300 font-mono text-sm">THE SWARM</div>
-      <p class="mt-1">Per-source profiling subagents; coordinator aggregates a swamp-health dashboard. Challenge 9.</p>
+      <p class="mt-1">Per-source profiling subagents; coordinator aggregates a swamp-health dashboard. Challenge 9, deliberately deferred.</p>
+    </div>
+    <div>
+      <div class="text-gold-300 font-mono text-sm">FORK_SESSION ON THE MATCHER</div>
+      <p class="mt-1">Two scoring schemes, same golden set, compare false-confidence-rate, keep the winner.</p>
     </div>
   </div>
 </section>
 
-<!-- Slide 9: Thank you -->
+<!-- Slide 10: Thank you -->
 <section class="slide">
-  <div class="num">09 / THANK YOU</div>
+  <div class="num">10 / THANK YOU</div>
   <h1 class="title font-display">One customer.<br/><span class="text-gold-400">Seven sources.</span></h1>
   <div class="rule"></div>
   <p class="text-lg text-mute">Questions, complaints, and pull requests welcome.</p>
@@ -268,7 +288,7 @@
   <p class="mt-2 text-mute text-sm">Team SCV-Swampers.</p>
 </section>
 
-<div class="progress" id="progress">1 / 9</div>
+<div class="progress" id="progress">1 / 10</div>
 <div class="hint">&larr; &rarr; / PgUp PgDn / Home End</div>
 
 <script>
