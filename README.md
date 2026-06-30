@@ -1,173 +1,186 @@
-# Claude Code Hackathon
-
-## The Point
-
-This is a hack. You get a team, a scenario, and Claude Code. The scenarios are enterprise-flavored briefs: a monolith nobody understands, a migration nobody agrees on, seven systems that can't agree on what a customer is. Real problems, compressed.
-
-There's no prescribed path. Each scenario sketches a handful of challenges worth working toward. How you get there, what stack you pick, what you skip, what you invent on top is up to you. We care about ambition and judgment, not box-checking.
-
----
-
-## The Setup
-
-Pick one scenario. Work with your team. Get as far as you can.
-
-Each scenario sketches a handful of challenges. You probably won't do them all, and that's the point. **Depth beats breadth.** Pick the ones that interest you, work in parallel where you can, and let Claude help you coordinate.
-
----
-
-## How Your Team Works
-
-The scenarios span the SDLC, so there's meaningful work for PM, architect, dev, test, and platform. You won't have one of each, and that's fine. **Play every role, regardless of your day job.** Claude Code doesn't care what your title is, and a lot of what makes the hack interesting is watching the tool perform in parts of the work you don't normally touch.
-
-Divide the challenges up early. Share a running `CLAUDE.md` so everyone teaches the tool the same conventions. Commit often. The commit history is part of the submission and part of how the judges read the journey.
-
----
-
-## The Rules
-
-1. **Tech stack is yours to choose.** One exception: Scenario 5 requires the **Claude Agent SDK**. Use Claude to help you learn it, or to migrate if you're coming from another framework.
-2. **You may need to build starter code, data, or documents.** If the scenario says "a 12-year-old monolith exists," you generate it. That's part of the job. Some scenarios offer optional starter repos. Use them or don't.
-3. **Play every role.** Your team needs a PM, architect, developer, tester, data engineer, and infra engineer whether you staffed for it or not.
-4. **Commit history is evidence.** We want to see the journey, not just the destination.
-5. **`CLAUDE.md` is your friend.** Teach it your conventions early.
-6. **Document your work.** Your repo must include a `README.md` (template below) explaining what you built and what you'd do next.
-7. **Build a presentation.** Use Claude Code to generate an HTML presentation you *could* deliver if you win the judging. It lives in your repo whether you present or not.
-8. **Claude will judge.** At the end, Claude evaluates submissions. A handful of teams present live.
-
----
-
-## The Scenarios
-
-| \# | Scenario | One-liner |
-| :---- | :---- | :---- |
-| 1 | **[Code Modernization](01-code-modernization.md)** | A monolith nobody understands. The board wants it "modernized." |
-| 2 | **[Cloud Migration](02-cloud-migration.md)** | On-prem to cloud. The CFO and CTO disagree on how. |
-| 3 | **[Data Engineering](03-data-engineering.md)** | Seven systems. Zero agreement on what a "customer" is. |
-| 4 | **[Data Analytics](04-data-analytics.md)** | 40 dashboards. One metric. Four different answers. |
-| 5 | **[Agentic Solution](05-agentic-solution.md)** (Claude Agent SDK) | 200 requests a day, triaged by hand. Build the agent. |
-
----
-
-## Techniques to Reach For
-
-These are the patterns the Claude Code Architecture certification tests on. No scenario requires them, and no challenge dictates which to use. They're here because a lot of teams also want the hack to double as cert practice. Pick two or three you want to get reps on, and reach for them inside whichever challenges you pursue.
-
-**Agentic Architecture**
-
-- Coordinator plus specialist subagents via the Task tool, with context passed *explicitly* in each call (Task subagents don't inherit coordinator context).
-- Stop conditions that are real signals, not "parse the text" or "iteration cap."
-- `fork_session` to try two paths on the same input and compare.
-
-**Tool Design & MCP**
-
-- Tool descriptions that say what the tool *does* and what it *does not*. Input formats, edge cases, example queries.
-- Structured error responses (`isError: true` with a reason code and guidance) so the agent can recover gracefully.
-- Keep each specialist's tool count small. Reliability tends to drop once an agent has more than a handful.
-- An MCP server over whatever system you built, so a fresh Claude session picks the right tool on the first try.
-
-**Claude Code Config**
-
-- Three-level `CLAUDE.md`: user (personal preferences), project (shared, in VCS), directory (per-module specifics).
-- Custom slash commands *and* skills, used distinctly. A command runs a playbook; a skill captures reusable guidance.
-- Plan Mode for anything reversible-dangerous; direct execution for the safe paths. Defend the default.
-- Non-interactive Claude Code in CI, with scoped tools and no write access to production paths.
-
-**Prompt Engineering**
-
-- Explicit criteria in place of vague modifiers. "Material," "significant," and "recent" are usually a signal that the definition needs sharper thresholds.
-- Few-shot examples with a negative case and a boundary case. Two sharp examples outperform eight fuzzy ones.
-- `tool_use` with a JSON Schema for anything that must parse. Don't prompt-for-JSON.
-- Validation-retry loop: structured validator checks the output, errors are fed back, Claude retries up to N times. Log retry count and error type.
-
-**Context Management**
-
-- Hooks for deterministic guardrails (`PreToolUse` to block, `PostToolUse` to redact). Prompts for probabilistic preferences. An ADR on why each is which is worth writing; the distinction shows up repeatedly on the exam.
-- Escalation rules that are category plus confidence plus impact, not "when the agent isn't sure."
-- Stratified sampling and field-level confidence when humans review.
-
----
-
-## The Judging
-
-Claude does the first pass. Top teams present live.
-
-**What definitely gets read:**
-
-1. Your `README.md`
-2. Your `presentation.html`
-3. Your `CLAUDE.md`
-
-These are your pitch. Don't leave them to the end. If Claude only sees those three files, it should still understand what you built, why it matters, how far you got, and how you taught the tool to work your way. We may go deeper into the repo, we may not. Assume those three carry the weight.
-
-**What we're looking for** (final categories will be a surprise!, but think along these lines):
-
-- **Most production-ready.** Could hand it to an ops team Monday.
-- **Best architecture thinking.** ADRs, diagrams, decisions someone will thank you for later.
-- **Best testing.** Not coverage. Adversarial thinking, edge cases, evals.
-- **Best product work.** Stories that are actually stories. Docs that persuade.
-- **Most inventive Claude Code use.** Subagents, hooks, skills, something we didn't expect.
-- **Wildcards:** best CI/CD, best legacy archaeology, best "what if this goes wrong" thinking, furthest through the challenges with quality intact, team that questioned a scenario requirement and was *right*.
-
----
-
-## Submission
-
-You need three files:
-
-1. **`README.md`** tells the story. Use the template below.
-2. **`CLAUDE.md`** so we can see how you taught Claude Code to work your way.
-3. **`presentation.html`**, your HTML deck built with Claude Code, ready to present if called.
-
-**Preferred:** put the three files in a folder named for your table and team (for example `Table1_SonnetSlayers/`) and upload the folder to the link provided at your session.
-
-**Alternative:** if a folder upload isn't supported, zip the three files into an archive with the same naming convention (for example `Table1_SonnetSlayers.zip`) and upload that instead.
-
-Either way, **one submission per team**.
-
-**NO CLIENT OR INTERNAL DATA.** Anything in the submission must be safe to share.
-
----
-
-## README Template
-
-Copy this into your repo's `README.md` and fill it in as you go, not at the end.
-
-```
-# Team <name>
+# Team SCV-Swampers
 
 ## Participants
-- Name (role(s) played today)
-- Name (role(s) played today)
-- Name (role(s) played today)
+
+- TBD (architect / data engineer)
+- TBD (backend / matcher)
+- TBD (frontend)
+- TBD (quality / hooks)
+- TBD (catalog / docs)
+- TBD (eval / CI)
+
+> Placeholder names. Rename before submission.
 
 ## Scenario
-Scenario <#>: <title>
+
+**Scenario 3 — Data Engineering: Single Customer View.** Fabrikam Retail has
+seven source systems that disagree on what a customer is. Same person, four
+IDs, two spellings, one mojibake'd umlaut. The CDO wants one trustworthy
+record. We picked a lakehouse architecture, a deterministic-plus-fuzzy
+matcher, and a React frontend that lets you actually *see* the mess collapse
+into a golden record.
 
 ## What We Built
-A couple of paragraphs. What exists in this repo that didn't exist when you
-started. What runs, what's scaffolding, what's faked.
+
+A three-zone lakehouse on a single DuckDB file (`warehouse/fabrikam.duckdb`).
+Seven loaders land each source verbatim in the **raw** zone with full
+lineage columns (`_source`, `_source_file`, `_source_row`, `_ingested_at`,
+`_raw_payload`). A conform layer rebuilds the **conformed** zone with a
+canonical schema, pure normalizers (Excel-serial dates, E.164 phones,
+encoding heuristics, ZIP padding), and a validation-retry loop that sends
+unsalvageable rows to `_reject` with a specific reason. The **curated** zone
+holds `customer_master`, `customer_xref`, `match_audit`, and
+`customer_review`. PII is hashed on the way in.
+
+The matcher in `backend/pipeline/match.py` is two-pass: deterministic merges
+on strong keys (normalized email, E.164 phone, cross-source FKs), then a
+fuzzy pass with `rapidfuzz` over `(name, street, city)` blocked by
+`(last_initial, region, birth_year)`. Survivorship is field-level and
+explicit — every field on the master row carries a source attribution and a
+confidence. A record-level confidence drives three lanes: `>=0.90`
+auto-merge, `0.70-0.89` to the stewardship queue, `<0.70` stays separate.
+
+The frontend (React 18 + Vite + TypeScript + Tailwind + TanStack Query)
+exposes four pages: the **Swamp Dashboard** (per-source counts, quality
+scores, last-ingest timestamp), the **Golden Record viewer** (master row
+plus all source rows with field-level confidence), the **Stewardship Queue**
+(the 0.70-0.89 band, with side-by-side diff and Merge/Keep-separate
+buttons), and the **Lineage Trace** (curated -> xref -> conformed -> raw
+-> the original `_raw_payload`). The eval harness in
+`backend/tests/test_matcher_eval.py` runs against `golden_pairs.csv` and
+reports precision, recall, and false-confidence rate stratified by
+easy/hard/boundary/negative — runs in CI so the CDO gets a defensible
+single number. See [`decisions/ADR-0001-blueprint.md`](decisions/ADR-0001-blueprint.md)
+for the full architecture write-up.
 
 ## Challenges Attempted
+
 | # | Challenge | Status | Notes |
 |---|---|---|---|
-| 1 | The <name> | done / partial / skipped | |
-| 2 | | | |
+| 1 | The Mess | done | Realistic noise already lives in `acq_*/`, `crm/`, `pos/`, `loyalty/`, `ecommerce/`. Inventory documented in [`docs/the-mess.md`](docs/the-mess.md). |
+| 2 | The Blueprint | done | Three-zone lakehouse, three-level CLAUDE.md, "what we chose not to do" section. ADR-0001. |
+| 3 | The Intake | done | 7 source loaders, all with lineage columns. Validation-retry on date parsing (strict -> dateutil -> reject). CDC/flaky-API stubs not built (see below). |
+| 4 | The Customer | done | Two-pass matcher, field-level survivorship, explicit thresholds. |
+| 5 | The Tripwire | done | Schema drift (BLOCK), null explosion / volume / RI (ALERT). `PreToolUse` hook in `.claude/hooks/curated_gate.sh`. |
+| 6 | The Catalog | done | `docs/catalog/customer.md` and `docs/catalog/sources.md`. Analyst-readable, linked to ADR-0001 §3. |
+| 7 | The Scorecard | done | 20+ stratified pairs, precision / recall / false-confidence-rate, in CI. |
+| 8 | The Trace | partial | Lineage path is in the API and rendered on the frontend. No MCP server yet — that's "if we had more time". |
+| 9 | The Swarm | skipped | Designed it on paper as per-source Task subagents emitting structured profile reports; ran out of clock to wire it. |
 
 ## Key Decisions
-Biggest calls you made and why. Link into `/decisions` for the full ADRs.
+
+- **DuckDB as the lakehouse.** Lakehouse semantics in a single file, demo-able
+  on a laptop. We accept that this caps us at one host.
+- **Hooks for guardrails, prompts for preferences.** Quality contracts are
+  Python code enforced by a `PreToolUse` hook; zone semantics live in
+  per-zone `CLAUDE.md` files.
+- **Mock-mode frontend (`VITE_MOCK=1`).** Frontend was never blocked on the
+  backend during the hack.
+- **Explicit survivorship.** No "last wins" magic. Every field has a rule
+  and a confidence.
+
+Full write-up in [`decisions/ADR-0001-blueprint.md`](decisions/ADR-0001-blueprint.md).
 
 ## How to Run It
-Exact commands. Assume the reader has Docker and nothing else.
+
+**Preferred — with `make`:**
+
+```bash
+make setup      # pip install -e ./backend[dev] + npm install in frontend/
+make pipeline   # ETL all 7 sources into warehouse/fabrikam.duckdb
+make dev        # backend on :8000, frontend on :5173, Ctrl-C kills both
+```
+
+**Open** http://localhost:5173 and you should see the Swamp Dashboard.
+
+**Backup route — no make (Windows PowerShell or any POSIX shell):**
+
+```bash
+pip install -e "./backend[dev]"
+cd frontend && npm install && cd ..
+cd backend && python -m pipeline.run && cd ..
+
+# in one terminal:
+cd backend && uvicorn api.main:app --reload --port 8000
+# in another terminal:
+cd frontend && npm run dev
+```
+
+**Tests:**
+
+```bash
+make test
+# or
+cd backend && pytest -q
+```
+
+**OS notes.** The Makefile is POSIX-shell; on Windows use **Git Bash** or
+**WSL** so `make` and `bash -c` are available. msys2's `make` ships with
+Git for Windows by default. PowerShell-native users should use the backup
+route above. macOS / Linux: nothing special.
+
+## Architecture
+
+```
+sources/                raw                 conformed             curated              API           Web
+                                                                                                    
+acq_northwind  ┐                                                                                    
+acq_rheinland  │                                                                                    
+acq_sunset     │       one table          customer  (canonical    customer_master                   
+crm            ├──►    per source   ──►   schema, normalized) ──► customer_xref      ──►  FastAPI  ──►  React
+ecommerce      │       + lineage          _reject                  match_audit         (OpenAPI)   (Vite/TS)
+loyalty        │       columns            (rejects w/ reason)      customer_review                  
+pos            ┘                                                                                    
+                                                                                                    
+                       append-only       idempotent rebuild       idempotent rebuild   /api/...    pages/
+                                                                  PII hashed                       Swamp
+                                                                                                   Golden
+                                                                                                   Stewardship
+                                                                                                   Lineage
+```
 
 ## If We Had More Time
-What you'd tackle next, in priority order. Be honest about what's held
-together with tape.
+
+In priority order:
+
+1. **MCP server for trace tools (Challenge 8).** `preview_table`,
+   `trace_lineage`, `find_record`, `get_source_schema` over the curated
+   warehouse. A fresh Claude session should pick the right tool first try.
+2. **Streaming ingestion.** Today every source is batch. Add a CDC stream
+   shape (POS) and a flaky-API shape (loyalty) with backoff + retry budget.
+3. **Stewardship UI persistence.** Today the review buttons log the
+   decision but the matcher doesn't re-evaluate in-place. Wire it through.
+4. **KMS-backed PII hashes.** The salt is currently `DEMO_ONLY` in the
+   repo. Move it to an envelope-encrypted key.
+5. **Address standardization.** We rely on rapidfuzz; USPS/CASS would lift
+   recall on the boundary band.
+6. **Multi-tenancy.** Today everything is global. Tenant-scoped tables and
+   row-level filters in the API.
+7. **The Swarm (Challenge 9).** Per-source profiling subagents that emit
+   structured reports, aggregated into a "swamp health" dashboard.
 
 ## How We Used Claude Code
-What worked. What surprised you. Where it saved the most time.
-```
+
+- **Subagents for parallel build.** Six person-roles in `plan.md` map to
+  six Claude Code subagents working in parallel branches. Coordinator
+  passed each one a tight context envelope: the ADR, the per-zone
+  CLAUDE.md, the API contract.
+- **Hooks for the curated-zone gate.** `.claude/hooks/curated_gate.sh`
+  fires on `PreToolUse` for `Write` calls under `warehouse/curated/`. If
+  `quality.assert_contracts_pass()` is red, the write is blocked. This is
+  the cleanest split between deterministic guardrails (hooks) and
+  probabilistic preferences (prompts).
+- **Three-level CLAUDE.md.** Root file at `CLAUDE.md` carries the project
+  conventions. Per-zone files under `warehouse/<zone>/CLAUDE.md` carry the
+  things that differ (mutation rule, PII policy, retention). User-level
+  is the engineer's personal preferences.
+- **Eval harness in CI.** `backend/tests/test_matcher_eval.py` runs on
+  every PR. Precision, recall, false-confidence rate, stratified — one
+  defensible number for the CDO.
+- **Validation-retry loop on date parsing.** Strict format -> dateutil
+  fallback -> reject row with `reject_reason` + `reject_field`. Logged
+  retry counts become evidence in the catalog.
 
 ---
 
-**Pick a scenario. Start building.**
+`presentation.html` lives at the repo root.

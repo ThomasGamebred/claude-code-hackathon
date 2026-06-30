@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+body {
+  @apply bg-swamp-50 text-slate-900 antialiased;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(85, 123, 105, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(230, 182, 44, 0.06) 0px, transparent 50%);
+  min-height: 100vh;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
+  }
+}

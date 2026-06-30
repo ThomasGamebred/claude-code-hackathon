@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seven Systems, One Customer — Team SCV-Swampers</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#0b0d10',
+          coal: '#15181d',
+          gold: { 300: '#f1d182', 400: '#e9bf5b', 500: '#d4a13a', 600: '#a67a23' },
+          mute: '#8a8d92',
+        },
+        fontFamily: {
+          display: ['ui-serif', 'Georgia', 'Cambria', 'serif'],
+          sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html, body { background: #0b0d10; color: #e8e8ea; height: 100%; margin: 0; }
+  .slide {
+    display: none;
+    min-height: 100vh;
+    padding: 6vh 8vw;
+    box-sizing: border-box;
+  }
+  .slide.active { display: flex; flex-direction: column; justify-content: center; }
+  .num { color: #a67a23; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.8rem; }
+  h1.title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.05; }
+  h2.title { font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.1; }
+  .rule { height: 2px; width: 5rem; background: #d4a13a; margin: 1.5rem 0; }
+  pre.ascii {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #e9bf5b;
+    background: #15181d;
+    border-left: 3px solid #d4a13a;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .chip {
+    display: inline-block;
+    background: #15181d;
+    border: 1px solid #2b2f36;
+    color: #f1d182;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .progress {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    color: #8a8d92;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+  .hint {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 1.5rem;
+    color: #4f5359;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  table.demo { width: 100%; border-collapse: collapse; }
+  table.demo td, table.demo th { padding: 0.6rem 0.9rem; border-bottom: 1px solid #2b2f36; text-align: left; }
+  table.demo th { color: #f1d182; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; }
+</style>
+</head>
+<body class="font-sans">
+
+<!-- Slide 1: Title -->
+<section class="slide active">
+  <div class="num">SCENARIO 3 — DATA ENGINEERING</div>
+  <h1 class="title font-display">Seven Systems,<br/><span class="text-gold-400">One Customer</span>.</h1>
+  <div class="rule"></div>
+  <p class="text-mute text-lg max-w-2xl">Fabrikam Retail has seven source systems and zero agreement on what a customer is. We built one. On a laptop. In an afternoon.</p>
+  <p class="mt-12 text-mute"><span class="text-gold-300">Team SCV-Swampers</span> &mdash; Hackathon submission</p>
+</section>
+
+<!-- Slide 2: The Swamp -->
+<section class="slide">
+  <div class="num">02 / THE SWAMP</div>
+  <h2 class="title font-display">What each source gets wrong.</h2>
+  <div class="rule"></div>
+  <table class="demo mt-4">
+    <thead><tr><th>Source</th><th>What it ships</th><th>What it breaks</th></tr></thead>
+    <tbody>
+      <tr><td class="font-mono text-gold-300">acq_northwind</td><td>34 rows, pipe-delim</td><td>Names truncated mid-character; <span class="font-mono">00000000</span> sentinel DOBs</td></tr>
+      <tr><td class="font-mono text-gold-300">acq_rheinland</td><td>30 rows, semicolon</td><td>Per-row encoding mix; <span class="font-mono">J&Atilde;&frac14;rgen M&Atilde;&frac14;ller</span> twice as two IDs</td></tr>
+      <tr><td class="font-mono text-gold-300">acq_sunset</td><td>30 rows, csv</td><td>Excel-serial dates next to strings; phone column has a date in it</td></tr>
+      <tr><td class="font-mono text-gold-300">crm</td><td>31 rows, csv</td><td>BOM; literal <span class="font-mono">"NULL"</span> string; 2-digit years; <span class="font-mono">6/31/22</span></td></tr>
+      <tr><td class="font-mono text-gold-300">ecommerce</td><td>~30 customers, json</td><td>David / Dave / D Lee — one person? two? three?</td></tr>
+      <tr><td class="font-mono text-gold-300">loyalty</td><td>37 rows, csv</td><td>Cross-source FK with <span class="font-mono">999999</span> sentinel; negative points</td></tr>
+      <tr><td class="font-mono text-gold-300">pos</td><td>49 rows, csv</td><td>ZIP truncated to 4 digits; mojibake; <span class="font-mono">MICKEY MOUSE</span>, spend 9999999</td></tr>
+    </tbody>
+  </table>
+  <p class="mt-6 text-mute text-sm">All real-looking. None of it synthetic-noise-looking. Inventory: <span class="font-mono text-gold-300">docs/the-mess.md</span>.</p>
+</section>
+
+<!-- Slide 3: Architecture -->
+<section class="slide">
+  <div class="num">03 / ARCHITECTURE</div>
+  <h2 class="title font-display">Three zones. One DuckDB file. Zero infra.</h2>
+  <div class="rule"></div>
+<pre class="ascii mt-2">
+ sources           raw                conformed             curated              api          web
+ -------------     --------------     ----------------      ------------------   ----------   ----------
+ acq_northwind  -. one table per      customer              customer_master
+ acq_rheinland   \  source w/ full    (canonical schema,    customer_xref
+ acq_sunset       \ lineage cols      normalized,
+ crm               &gt;----------&gt; ---&gt; unhashed)        ---&gt; match_audit         ---&gt; FastAPI ---&gt; React
+ ecommerce        / append-only       _reject               customer_review          OpenAPI    Vite/TS
+ loyalty         /  truncate+reload   (rows w/ reason)      PII hashed,
+ pos            -'                                          street tokenized
+
+ mutation:       append-only          idempotent rebuild    idempotent rebuild
+ pii:            verbatim             unhashed              SHA-256 peppered
+ retention:      indefinite           7 years               7 years
+ readers:        engineers            DEs + senior anlsts   analysts, BI, app
+</pre>
+  <p class="mt-4 text-mute text-sm">ADR-0001 carries the full rationale. Per-zone <span class="font-mono text-gold-300">CLAUDE.md</span> files carry what differs.</p>
+</section>
+
+<!-- Slide 4: Identity Resolution -->
+<section class="slide">
+  <div class="num">04 / IDENTITY RESOLUTION</div>
+  <h2 class="title font-display">The matcher: deterministic, then fuzzy.</h2>
+  <div class="rule"></div>
+  <p class="max-w-3xl text-lg">Pass 1: exact match on normalized email, E.164 phone, and cross-source FKs. Pass 2: rapidfuzz over <span class="font-mono text-gold-300">(name, street, city)</span> blocked by <span class="font-mono text-gold-300">(last_initial, region, birth_year)</span>. Survivorship is field-level: every value on the master row carries a source and a confidence. Record confidence = floor of populated-field confidences.</p>
+  <div class="mt-6 grid grid-cols-3 gap-6">
+    <div class="bg-coal border-l-2 border-gold-500 p-5">
+      <div class="text-gold-400 font-mono text-2xl">&ge; 0.90</div>
+      <div class="text-mute text-sm mt-1">Auto-merge</div>
+    </div>
+    <div class="bg-coal border-l-2 border-gold-500 p-5">
+      <div class="text-gold-400 font-mono text-2xl">0.70 &mdash; 0.89</div>
+      <div class="text-mute text-sm mt-1">Stewardship queue</div>
+    </div>
+    <div class="bg-coal border-l-2 border-gold-500 p-5">
+      <div class="text-gold-400 font-mono text-2xl">&lt; 0.70</div>
+      <div class="text-mute text-sm mt-1">Keep separate</div>
+    </div>
+  </div>
+  <p class="mt-6 text-mute text-sm"><span class="text-gold-300">Scoreboard mock:</span> top-left counter "5 awaiting review", side-by-side diff of David Lee vs D Lee +amazon, two big buttons &mdash; Merge / Keep Separate &mdash; field-level confidence tooltips.</p>
+</section>
+
+<!-- Slide 5: Quality Gate -->
+<section class="slide">
+  <div class="num">05 / QUALITY GATE</div>
+  <h2 class="title font-display">The hook that blocks the curated zone.</h2>
+  <div class="rule"></div>
+  <p class="max-w-3xl text-lg">Schema drift, null explosion, volume anomaly, referential integrity. Each check is Python code, not a prompt instruction. A <span class="font-mono text-gold-300">PreToolUse</span> hook intercepts every <span class="font-mono text-gold-300">Write</span> into <span class="font-mono text-gold-300">warehouse/curated/</span>.</p>
+<pre class="ascii mt-4">
+ Claude Code wants to Write &rarr; warehouse/curated/customer_master.parquet
+                                       |
+                                       v
+                .claude/hooks/curated_gate.sh
+                                       |
+                  +--------------------+---------------------+
+                  |                                          |
+              contracts pass                         contracts fail
+                  |                                          |
+              exit 0                              exit 2 + stderr to Claude
+                  |                                          |
+            write happens                            write blocked
+</pre>
+  <p class="mt-4 text-mute text-sm">Hooks for deterministic guardrails. Prompts for probabilistic preferences. The split is explicit and lives in the ADR.</p>
+</section>
+
+<!-- Slide 6: Frontend Demo Tour -->
+<section class="slide">
+  <div class="num">06 / DEMO TOUR</div>
+  <h2 class="title font-display">Four screens, one story.</h2>
+  <div class="rule"></div>
+  <div class="grid grid-cols-2 gap-6 mt-4">
+    <div class="bg-coal p-6 border-t-2 border-gold-500">
+      <div class="text-gold-400 font-mono text-sm">1. SWAMP DASHBOARD</div>
+      <p class="mt-2">Seven cards. Per-source row count, completeness, last ingest, anomaly count. Recharts bars per quality check. The reader sees the mess in three seconds.</p>
+    </div>
+    <div class="bg-coal p-6 border-t-2 border-gold-500">
+      <div class="text-gold-400 font-mono text-sm">2. GOLDEN RECORD</div>
+      <p class="mt-2">Search Maria. Four sources collapse into one row. Every field shows source attribution and confidence on hover. <span class="font-mono text-gold-300">customer_xref</span> is right there.</p>
+    </div>
+    <div class="bg-coal p-6 border-t-2 border-gold-500">
+      <div class="text-gold-400 font-mono text-sm">3. STEWARDSHIP QUEUE</div>
+      <p class="mt-2">David Lee + amazon alias, no phone. The 0.70-0.89 band. Side-by-side diff. Human decides. The decision logs to <span class="font-mono text-gold-300">customer_review</span>.</p>
+    </div>
+    <div class="bg-coal p-6 border-t-2 border-gold-500">
+      <div class="text-gold-400 font-mono text-sm">4. LINEAGE TRACE</div>
+      <p class="mt-2">Given a customer, walk back: master &larr; xref &larr; conformed &larr; raw &larr; <span class="font-mono text-gold-300">_raw_payload</span>. The thing the CDO will ask for on day two.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 7: Eval -->
+<section class="slide">
+  <div class="num">07 / EVAL</div>
+  <h2 class="title font-display">A single defensible number.</h2>
+  <div class="rule"></div>
+  <p class="max-w-3xl text-lg">20+ golden pairs in <span class="font-mono text-gold-300">backend/tests/golden_pairs.csv</span>, stratified into easy, hard, boundary, and negative. Runs in CI on every PR.</p>
+  <table class="demo mt-4 max-w-2xl">
+    <thead><tr><th>Metric</th><th>What it answers</th></tr></thead>
+    <tbody>
+      <tr><td class="font-mono text-gold-300">Precision</td><td>Of merges we auto-approved, how many were right?</td></tr>
+      <tr><td class="font-mono text-gold-300">Recall</td><td>Of real duplicates, how many did we catch?</td></tr>
+      <tr><td class="font-mono text-gold-300">False-confidence-rate</td><td>How often did we say "&ge; 0.90" and be wrong?</td></tr>
+    </tbody>
+  </table>
+  <p class="mt-6 text-mute text-sm">Headline cases: Sean O'Brien (4 sources), Maria Hernandez-Garcia (4), J&uuml;rgen M&uuml;ller mojibake duplicate, David/Dave/D Lee + amazon boundary, Sean Williams &ne; Sean Rodriguez, Jurgen Schmidt Berlin &ne; K&ouml;ln &mdash; the matcher must not over-merge.</p>
+</section>
+
+<!-- Slide 8: What's Next -->
+<section class="slide">
+  <div class="num">08 / WHAT'S NEXT</div>
+  <h2 class="title font-display">If we had more time.</h2>
+  <div class="rule"></div>
+  <div class="grid grid-cols-2 gap-x-12 gap-y-5 mt-4 text-lg">
+    <div>
+      <div class="text-gold-300 font-mono text-sm">STREAMING</div>
+      <p class="mt-1">CDC shape for POS; flaky-API shape for loyalty with backoff + retry budget.</p>
+    </div>
+    <div>
+      <div class="text-gold-300 font-mono text-sm">MCP FOR LINEAGE</div>
+      <p class="mt-1">An MCP server over <span class="font-mono">preview_table</span>, <span class="font-mono">trace_lineage</span>, <span class="font-mono">find_record</span>, <span class="font-mono">get_source_schema</span>. Challenge 8.</p>
+    </div>
+    <div>
+      <div class="text-gold-300 font-mono text-sm">STEWARDSHIP PERSISTENCE</div>
+      <p class="mt-1">Review decisions re-trigger the matcher in-place rather than just logging.</p>
+    </div>
+    <div>
+      <div class="text-gold-300 font-mono text-sm">KMS-BACKED PII</div>
+      <p class="mt-1">Replace the <span class="font-mono">DEMO_ONLY</span> pepper with an envelope-encrypted key.</p>
+    </div>
+    <div>
+      <div class="text-gold-300 font-mono text-sm">ADDRESS STANDARDIZATION</div>
+      <p class="mt-1">USPS/CASS to lift recall on the boundary band.</p>
+    </div>
+    <div>
+      <div class="text-gold-300 font-mono text-sm">THE SWARM</div>
+      <p class="mt-1">Per-source profiling subagents; coordinator aggregates a swamp-health dashboard. Challenge 9.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 9: Thank you -->
+<section class="slide">
+  <div class="num">09 / THANK YOU</div>
+  <h1 class="title font-display">One customer.<br/><span class="text-gold-400">Seven sources.</span></h1>
+  <div class="rule"></div>
+  <p class="text-lg text-mute">Questions, complaints, and pull requests welcome.</p>
+  <div class="mt-12 font-mono text-gold-300 text-lg">
+    repo: &lt;https://github.com/&lt;org&gt;/claude-code-hackathon&gt;
+  </div>
+  <p class="mt-2 text-mute text-sm">Team SCV-Swampers.</p>
+</section>
+
+<div class="progress" id="progress">1 / 9</div>
+<div class="hint">&larr; &rarr; / PgUp PgDn / Home End</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let i = 0;
+    const progress = document.getElementById('progress');
+    function show(n) {
+      n = Math.max(0, Math.min(slides.length - 1, n));
+      slides[i].classList.remove('active');
+      slides[n].classList.add('active');
+      i = n;
+      progress.textContent = (i + 1) + ' / ' + slides.length;
+      window.scrollTo(0, 0);
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+      else if (e.key === 'Home') { e.preventDefault(); show(0); }
+      else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+      else if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+    });
+    // click-anywhere advances; click left edge goes back
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      if (e.clientX < window.innerWidth * 0.2) show(i - 1);
+      else show(i + 1);
+    });
+  })();
+</script>
+
+</body>
+</html>

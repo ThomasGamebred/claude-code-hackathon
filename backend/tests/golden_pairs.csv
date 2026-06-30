@@ -1,0 +1,25 @@
+left_source,left_id,right_source,right_id,verdict,difficulty,notes
+acq_northwind,NW000771,acq_sunset,SC1007,match,easy,Sean O'Brien Boston same phone same address
+acq_northwind,NW000771,crm,0035000ghi,match,hard,Sean O'Brien CRM variant
+acq_northwind,NW000771,pos,100244:2,match,hard,Sean O'Brien POS mojibake
+acq_sunset,SC1007,crm,0035000ghi,match,easy,Sean O'Brien sunset vs crm
+acq_sunset,SC1007,pos,100244:2,match,hard,Sean O'Brien sunset vs pos
+crm,0035000ghi,pos,100244:2,match,hard,Sean O'Brien crm vs pos
+crm,0035000abc,ecommerce,ec_8841,match,easy,Maria Hernandez Garcia same phone same email-base
+crm,0035000abc,loyalty,LY-50012,match,easy,Maria via loyalty same phone
+crm,0035000abc,pos,100118:2,match,hard,Maria via POS truncated zip
+ecommerce,ec_8841,loyalty,LY-50012,match,easy,Maria same phone gmail dotless
+ecommerce,ec_8841,pos,100118:2,match,hard,Maria ecommerce vs POS
+loyalty,LY-50012,pos,100118:2,match,easy,Maria loyalty FK -> POS cust_id
+acq_rheinland,RH-1001,acq_rheinland,RH-1188,match,hard,Juergen Mueller utf-8 vs cp1252 mojibake
+ecommerce,ec_9001,ecommerce,ec_9002,match,easy,David vs Dave Lee same email-domain similar address
+ecommerce,ec_9001,ecommerce,ec_9003,unclear,boundary,D Lee +amazon alias no phone
+ecommerce,ec_9002,ecommerce,ec_9003,unclear,boundary,Dave Lee vs D Lee +amazon
+pos,100231:2,pos,100231:3,match,easy,Robert Smith POS within-source duplicate
+pos,100231:2,loyalty,LY-50019,match,easy,Robert Smith POS via loyalty FK
+pos,100231:3,loyalty,LY-50019,match,easy,Robert Smith POS dup via loyalty FK
+acq_sunset,SC1021,pos,100250:2,match,hard,Tony D'Angelo cross-encoding mojibake
+acq_northwind,NW000900,acq_sunset,SC1201,no_match,easy,Sean Williams vs Sean Rodriguez different last names
+acq_rheinland,RH-1107,acq_rheinland,RH-1123,no_match,easy,Jurgen Schmidt Berlin vs Koeln different cities
+crm,0035000def,ecommerce,ec_8847,no_match,hard,Elizabeth Carter Boston vs Bob Smith Chicago
+acq_northwind,NW000812,acq_sunset,SC1014,no_match,easy,Halpert vs Gress different identity

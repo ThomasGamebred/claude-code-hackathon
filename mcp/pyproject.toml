@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fabrikam-mcp"
+version = "0.1.0"
+description = "MCP server exposing trace and preview tools over the Fabrikam Single-Customer-View lakehouse"
+requires-python = ">=3.11"
+authors = [{ name = "Fabrikam Hackathon Team" }]
+dependencies = [
+    "mcp>=1.0",
+    "duckdb>=1.0",
+    "pydantic>=2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+fabrikam-mcp = "fabrikam_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["fabrikam_mcp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
