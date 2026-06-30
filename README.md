@@ -2,14 +2,12 @@
 
 ## Participants
 
-- TBD (architect / data engineer)
-- TBD (backend / matcher)
-- TBD (frontend)
-- TBD (quality / hooks)
-- TBD (catalog / docs)
-- TBD (eval / CI)
-
-> Placeholder names. Rename before submission.
+- Kay Kartschewsky
+- Thomas Schlütter
+- Sebastian Loer
+- Daniel Hartig
+- Korbinian Kipp
+- Julian Martin
 
 ## Scenario
 
