@@ -1,0 +1,30 @@
+acct,name,address,city,st,zip,phone,signup_dt,email,notes
+SC1007,Sean O Brien,5 Beacon St,Boston,MA,02108,617-555-0211,44197,sobrien@sunsetcatalog.example,loyal since print era
+SC1014,Greta Gress,12 Elm St,Trenton,NJ,08601,609-555-0173,44562,greta@sunsetcatalog.example,VIP
+SC1021,Tony D’Angelo,10 OHara Row,Jersey City,NJ,07302,03/15/2021,tony.dangelo@gmail.com,moved here
+SC1033,Linda Park,500 Oak Ave, Suite 4,Brooklyn,NY,11201,718-555-0166,44930,linda.park@sunsetcatalog.example,split address
+SC1040,"Hernandez, Maria",412 Market St,"Newark
+NJ",NJ,07102,973-555-0142,40123,maria.h@sunsetcatalog.example,"note line 1
+note line 2"
+SC1051,Bj�rn Schonfeld,K lner Ring 9,Cologne,,,,,bjoern@sunsetcatalog.example,encoding loss
+SC1099,,,,,,,,,
+SC1200,Greta Wilson,874 Wilson St,Chicago,IL,60601,710-555-0000,,greta.wilson@sunsetcatalog.example,
+SC1201,Sean Rodriguez,166 Rodriguez St,Miami,FL,33101,609-555-0001,,sean.rodriguez@sunsetcatalog.example,
+SC1202,Jurgen Nguyen,411 Nguyen St,Seattle,WA,98101,403-555-0002,,jurgen.nguyen@sunsetcatalog.example,do not mail
+SC1203,Hans Weber,466 Weber St,Austin,TX,78701,442-555-0003,41749,hans.weber@sunsetcatalog.example,catalog buyer
+SC1204,David Thomas,317 Thomas St,Austin,TX,78701,461-555-0004,08/02/2019,david.thomas@sunsetcatalog.example,do not mail
+SC1205,Sean Garcia,495 Garcia St,Boston,MA,02108,274-555-0005,07/03/2020,sean.garcia@sunsetcatalog.example,
+SC1206,Jennifer Anderson,835 Anderson St,Miami,FL,33101,646-555-0006,43640,jennifer.anderson@sunsetcatalog.example,
+SC1207,Barbara Jones,812 Jones St,Boston,MA,02108,270-555-0007,,barbara.jones@sunsetcatalog.example,
+SC1208,Sofia Mueller,523 Mueller St,Boston,MA,02108,305-555-0008,37831,sofia.mueller@sunsetcatalog.example,catalog buyer
+SC1209,Sean Nguyen,531 Nguyen St,Brooklyn,NY,11201,753-555-0009,09/02/2011,sean.nguyen@sunsetcatalog.example,catalog buyer
+SC1210,Jennifer Martinez,106 Martinez St,Jersey City,NJ,07302,823-555-0010,10/17/2006,jennifer.martinez@sunsetcatalog.example,do not mail
+SC1211,Hans Weber,207 Weber St,Seattle,WA,98101,661-555-0011,,hans.weber@sunsetcatalog.example,do not mail
+SC1212,Barbara Garcia,772 Garcia St,Seattle,WA,98101,248-555-0012,,barbara.garcia@sunsetcatalog.example,
+SC1213,William Williams,726 Williams St,Brooklyn,NY,11201,577-555-0013,44480,william.williams@sunsetcatalog.example,
+SC1214,John Davis,407 Davis St,Austin,TX,78701,829-555-0014,36305,john.davis@sunsetcatalog.example,
+SC1215,David Johnson,731 Johnson St,Austin,TX,78701,203-555-0015,,david.johnson@sunsetcatalog.example,catalog buyer
+SC1216,Joseph Hernandez,847 Hernandez St,Brooklyn,NY,11201,360-555-0016,,joseph.hernandez@sunsetcatalog.example,do not mail
+SC1217,James Mueller,989 Mueller St,Boston,MA,02108,674-555-0017,02/21/2010,james.mueller@sunsetcatalog.example,catalog buyer
+SC1218,Michael Jones,146 Jones St,Brooklyn,NY,11201,303-555-0018,01/19/2016,michael.jones@sunsetcatalog.example,do not mail
+SC1219,Aisha Weber,889 Weber St,Chicago,IL,60601,807-555-0019,44830,aisha.weber@sunsetcatalog.example,
