@@ -1,0 +1,750 @@
+[
+  {
+    "customer_id": "ec_8841",
+    "first_name": "Maria",
+    "last_name": "Hernandez",
+    "email": "maria.hernandez@gmail.com",
+    "phone": "+1-973-555-0142",
+    "created_at": "2021-06-02T14:11:09Z",
+    "shipping_address": {
+      "line1": "412 Market St Apt 3",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 14
+  },
+  {
+    "customer_id": "ec_8847",
+    "first_name": "Bob",
+    "last_name": "Smith",
+    "email": "bob.smith@yahoo.com",
+    "phone": "3125550188",
+    "created_at": "2020-01-15T09:02:00Z",
+    "shipping_address": {
+      "line1": "88 Lake Shore Dr",
+      "city": "Chicago",
+      "region": "IL",
+      "postal_code": "60601",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 3
+  },
+  {
+    "customer_id": "ec_9001",
+    "first_name": "David",
+    "last_name": "Lee",
+    "email": "david.lee@gmail.com",
+    "phone": "+1 206 555 0133",
+    "created_at": "2019-03-11T22:40:00Z",
+    "shipping_address": {
+      "line1": "700 Pine St",
+      "city": "Seattle",
+      "region": "WA",
+      "postal_code": "98101",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 41
+  },
+  {
+    "customer_id": "ec_9002",
+    "first_name": "Dave",
+    "last_name": "Lee",
+    "email": "davidlee@gmail.com",
+    "phone": "2065550133",
+    "created_at": "2022-08-19T17:05:00Z",
+    "shipping_address": {
+      "line1": "700 Pine St Unit 5",
+      "city": "Seattle",
+      "region": "WA",
+      "postal_code": "98101",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 2
+  },
+  {
+    "customer_id": "ec_9003",
+    "first_name": "D",
+    "last_name": "Lee",
+    "email": "david.lee+amazon@gmail.com",
+    "phone": "",
+    "created_at": "2023-02-01T03:30:00Z",
+    "shipping_address": {
+      "line1": "700 Pine Street",
+      "city": "seattle",
+      "region": "wa",
+      "postal_code": "98101",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 1
+  },
+  {
+    "customer_id": "ec_9100",
+    "first_name": "Jurgen",
+    "last_name": "Mueller",
+    "email": "juergen.mueller@web.de",
+    "phone": "+49 30 1234567",
+    "created_at": "2022-05-09T08:00:00Z",
+    "shipping_address": {
+      "line1": "Hauptstrasse 12",
+      "city": "Berlin",
+      "region": "BE",
+      "postal_code": "10115",
+      "country": "DE"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 7
+  },
+  {
+    "customer_id": "ec_9200",
+    "first_name": "Elizabeth",
+    "last_name": "Nguyen",
+    "email": "beth.nguyen@gmail.com",
+    "phone": "+1-617-555-0299",
+    "created_at": "2021-11-20T12:00:00Z",
+    "shipping_address": {
+      "line1": "14 Commonwealth Ave",
+      "city": "Boston",
+      "region": "MA",
+      "postal_code": "02108",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 9
+  },
+  {
+    "customer_id": "ec_9300",
+    "first_name": "Aisha",
+    "last_name": "Khan",
+    "email": "aisha.khan@gmail.com",
+    "phone": "+1-415-555-0190",
+    "created_at": "2023-11-05T05:00:00Z",
+    "shipping_address": {
+      "line1": "2200 Market St",
+      "city": "San Francisco",
+      "region": "CA",
+      "postal_code": "94114",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 1
+  },
+  {
+    "customer_id": "ec_9400",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "jsmith90@gmail.com",
+    "phone": "5125550144",
+    "created_at": "2023-06-30T19:45:00Z",
+    "shipping_address": {
+      "line1": "501 Congress Ave",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 1
+  },
+  {
+    "customer_id": "ec_9500",
+    "first_name": "Hans",
+    "last_name": "Williams",
+    "email": "hanswilliams0@yahoo.com",
+    "phone": "+1 382 555 0000",
+    "created_at": "2021-07-27T11:55:31Z",
+    "shipping_address": {
+      "line1": "423 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 10
+  },
+  {
+    "customer_id": "ec_9501",
+    "first_name": "Aisha",
+    "last_name": "Rodriguez",
+    "email": "aisharodriguez1@outlook.com",
+    "phone": "555-555-0001",
+    "created_at": "2023-04-27T05:05:35Z",
+    "shipping_address": {
+      "line1": "581 Main St",
+      "city": "Brooklyn",
+      "region": "NY",
+      "postal_code": "11201",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 3
+  },
+  {
+    "customer_id": "ec_9502",
+    "first_name": "Jessica",
+    "last_name": "Smith",
+    "email": "jessicasmith2@outlook.com",
+    "phone": "555-555-0002",
+    "created_at": "2022-09-25T09:41:32Z",
+    "shipping_address": {
+      "line1": "42 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 28
+  },
+  {
+    "customer_id": "ec_9503",
+    "first_name": "John",
+    "last_name": "Brown",
+    "email": "johnbrown3@outlook.com",
+    "phone": "555-555-0003",
+    "created_at": "2019-11-06T06:47:21Z",
+    "shipping_address": {
+      "line1": "493 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 5
+  },
+  {
+    "customer_id": "ec_9504",
+    "first_name": "Jurgen",
+    "last_name": "Jones",
+    "email": "jurgenjones4@yahoo.com",
+    "phone": "+1 497 555 0004",
+    "created_at": "2023-09-14T11:06:26Z",
+    "shipping_address": {
+      "line1": "691 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": null,
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 2
+  },
+  {
+    "customer_id": "ec_9505",
+    "first_name": "Greta",
+    "last_name": "Martinez",
+    "email": "gretamartinez5@outlook.com",
+    "phone": "555-555-0005",
+    "created_at": "2020-02-15T20:04:07Z",
+    "shipping_address": {
+      "line1": "152 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 27
+  },
+  {
+    "customer_id": "ec_9506",
+    "first_name": "John",
+    "last_name": "Brown",
+    "email": "johnbrown6@outlook.com",
+    "phone": null,
+    "created_at": "2023-12-25T20:33:49Z",
+    "shipping_address": {
+      "line1": "464 Main St",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 20
+  },
+  {
+    "customer_id": "ec_9507",
+    "first_name": "Sean",
+    "last_name": "Lopez",
+    "email": "seanlopez7@outlook.com",
+    "phone": "+1 802 555 0007",
+    "created_at": "2020-09-04T22:21:22Z",
+    "shipping_address": {
+      "line1": "381 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 15
+  },
+  {
+    "customer_id": "ec_9508",
+    "first_name": "Mary",
+    "last_name": "Brown",
+    "email": "marybrown8@outlook.com",
+    "phone": null,
+    "created_at": "2021-09-07T16:22:46Z",
+    "shipping_address": {
+      "line1": "653 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 6
+  },
+  {
+    "customer_id": "ec_9509",
+    "first_name": "Linda",
+    "last_name": "Nguyen",
+    "email": "lindanguyen9@outlook.com",
+    "phone": "",
+    "created_at": "2021-06-13T21:50:08Z",
+    "shipping_address": {
+      "line1": "930 Main St",
+      "city": "Seattle",
+      "region": "WA",
+      "postal_code": "98101",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 12
+  },
+  {
+    "customer_id": "ec_9510",
+    "first_name": "Karen",
+    "last_name": "Mueller",
+    "email": "karenmueller10@outlook.com",
+    "phone": "+1 436 555 0010",
+    "created_at": "2023-06-16T19:19:58Z",
+    "shipping_address": {
+      "line1": "965 Main St",
+      "city": "Chicago",
+      "region": "IL",
+      "postal_code": "60601",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 23
+  },
+  {
+    "customer_id": "ec_9511",
+    "first_name": "William",
+    "last_name": "O'Brien",
+    "email": "williamobrien11@icloud.com",
+    "phone": "+1 893 555 0011",
+    "created_at": "2019-06-03T20:41:40Z",
+    "shipping_address": {
+      "line1": "128 Main St",
+      "city": "Chicago",
+      "region": "IL",
+      "postal_code": null,
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 10
+  },
+  {
+    "customer_id": "ec_9512",
+    "first_name": "Sofia",
+    "last_name": "Davis",
+    "email": "sofiadavis12@icloud.com",
+    "phone": "",
+    "created_at": "2018-03-02T11:52:13Z",
+    "shipping_address": {
+      "line1": "546 Main St",
+      "city": "Boston",
+      "region": "MA",
+      "postal_code": "02108",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 5
+  },
+  {
+    "customer_id": "ec_9513",
+    "first_name": "Jennifer",
+    "last_name": "Lopez",
+    "email": "jenniferlopez13@yahoo.com",
+    "phone": null,
+    "created_at": "2021-05-12T13:55:31Z",
+    "shipping_address": {
+      "line1": "979 Main St",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 4
+  },
+  {
+    "customer_id": "ec_9514",
+    "first_name": "John",
+    "last_name": "Anderson",
+    "email": "johnanderson14@gmail.com",
+    "phone": "",
+    "created_at": "2023-06-11T18:52:34Z",
+    "shipping_address": {
+      "line1": "156 Main St",
+      "city": "Brooklyn",
+      "region": "NY",
+      "postal_code": "11201",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 28
+  },
+  {
+    "customer_id": "ec_9515",
+    "first_name": "Richard",
+    "last_name": "O'Brien",
+    "email": "richardobrien15@icloud.com",
+    "phone": "",
+    "created_at": "2021-01-23T06:07:25Z",
+    "shipping_address": {
+      "line1": "737 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 16
+  },
+  {
+    "customer_id": "ec_9516",
+    "first_name": "William",
+    "last_name": "Davis",
+    "email": "williamdavis16@icloud.com",
+    "phone": "",
+    "created_at": "2022-09-13T14:41:58Z",
+    "shipping_address": {
+      "line1": "96 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 10
+  },
+  {
+    "customer_id": "ec_9517",
+    "first_name": "Linda",
+    "last_name": "Jones",
+    "email": "lindajones17@yahoo.com",
+    "phone": null,
+    "created_at": "2022-05-13T10:16:54Z",
+    "shipping_address": {
+      "line1": "244 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 16
+  },
+  {
+    "customer_id": "ec_9518",
+    "first_name": "William",
+    "last_name": "Hernandez",
+    "email": "williamhernandez18@outlook.com",
+    "phone": "",
+    "created_at": "2018-03-13T21:21:25Z",
+    "shipping_address": {
+      "line1": "679 Main St",
+      "city": "Brooklyn",
+      "region": "NY",
+      "postal_code": null,
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 12
+  },
+  {
+    "customer_id": "ec_9519",
+    "first_name": "William",
+    "last_name": "Khan",
+    "email": "williamkhan19@icloud.com",
+    "phone": "555-555-0019",
+    "created_at": "2018-06-24T01:13:37Z",
+    "shipping_address": {
+      "line1": "840 Main St",
+      "city": "Jersey City",
+      "region": "NJ",
+      "postal_code": null,
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 9
+  },
+  {
+    "customer_id": "ec_9520",
+    "first_name": "Barbara",
+    "last_name": "Hernandez",
+    "email": "barbarahernandez20@gmail.com",
+    "phone": "555-555-0020",
+    "created_at": "2020-05-15T16:50:03Z",
+    "shipping_address": {
+      "line1": "903 Main St",
+      "city": "Jersey City",
+      "region": "NJ",
+      "postal_code": "07302",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 5
+  },
+  {
+    "customer_id": "ec_9521",
+    "first_name": "Jessica",
+    "last_name": "Nguyen",
+    "email": "jessicanguyen21@yahoo.com",
+    "phone": "",
+    "created_at": "2020-10-19T02:23:34Z",
+    "shipping_address": {
+      "line1": "693 Main St",
+      "city": "Jersey City",
+      "region": "NJ",
+      "postal_code": null,
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 23
+  },
+  {
+    "customer_id": "ec_9522",
+    "first_name": "Susan",
+    "last_name": "Lee",
+    "email": "susanlee22@outlook.com",
+    "phone": "",
+    "created_at": "2022-06-03T20:41:48Z",
+    "shipping_address": {
+      "line1": "325 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 21
+  },
+  {
+    "customer_id": "ec_9523",
+    "first_name": "Joseph",
+    "last_name": "Wilson",
+    "email": "josephwilson23@yahoo.com",
+    "phone": "555-555-0023",
+    "created_at": "2021-10-03T13:33:43Z",
+    "shipping_address": {
+      "line1": "312 Main St",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 14
+  },
+  {
+    "customer_id": "ec_9524",
+    "first_name": "Patricia",
+    "last_name": "Lee",
+    "email": "patricialee24@outlook.com",
+    "phone": "555-555-0024",
+    "created_at": "2019-10-03T11:30:46Z",
+    "shipping_address": {
+      "line1": "846 Main St",
+      "city": "Jersey City",
+      "region": "NJ",
+      "postal_code": "07302",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 15
+  },
+  {
+    "customer_id": "ec_9525",
+    "first_name": "Michael",
+    "last_name": "Wilson",
+    "email": "michaelwilson25@yahoo.com",
+    "phone": null,
+    "created_at": "2021-03-27T20:46:40Z",
+    "shipping_address": {
+      "line1": "899 Main St",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 2
+  },
+  {
+    "customer_id": "ec_9526",
+    "first_name": "Patricia",
+    "last_name": "Johnson",
+    "email": "patriciajohnson26@yahoo.com",
+    "phone": "",
+    "created_at": "2019-02-24T03:01:53Z",
+    "shipping_address": {
+      "line1": "893 Main St",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 19
+  },
+  {
+    "customer_id": "ec_9527",
+    "first_name": "Jessica",
+    "last_name": "Johnson",
+    "email": "jessicajohnson27@outlook.com",
+    "phone": "",
+    "created_at": "2022-03-27T03:10:58Z",
+    "shipping_address": {
+      "line1": "668 Main St",
+      "city": "Jersey City",
+      "region": "NJ",
+      "postal_code": "07302",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 5
+  },
+  {
+    "customer_id": "ec_9528",
+    "first_name": "Jennifer",
+    "last_name": "Wilson",
+    "email": "jenniferwilson28@icloud.com",
+    "phone": null,
+    "created_at": "2019-07-07T12:22:27Z",
+    "shipping_address": {
+      "line1": "884 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 6
+  },
+  {
+    "customer_id": "ec_9529",
+    "first_name": "James",
+    "last_name": "Mueller",
+    "email": "jamesmueller29@outlook.com",
+    "phone": "555-555-0029",
+    "created_at": "2018-10-16T06:53:38Z",
+    "shipping_address": {
+      "line1": "616 Main St",
+      "city": "Austin",
+      "region": "TX",
+      "postal_code": "78701",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 1
+  },
+  {
+    "customer_id": "ec_9530",
+    "first_name": "Mary",
+    "last_name": "Mueller",
+    "email": "marymueller30@gmail.com",
+    "phone": "+1 389 555 0030",
+    "created_at": "2022-12-05T07:10:46Z",
+    "shipping_address": {
+      "line1": "214 Main St",
+      "city": "Seattle",
+      "region": "WA",
+      "postal_code": "98101",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 17
+  },
+  {
+    "customer_id": "ec_9531",
+    "first_name": "Elizabeth",
+    "last_name": "Wilson",
+    "email": "elizabethwilson31@outlook.com",
+    "phone": "555-555-0031",
+    "created_at": "2019-11-08T10:46:08Z",
+    "shipping_address": {
+      "line1": "785 Main St",
+      "city": "Boston",
+      "region": "MA",
+      "postal_code": "02108",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 25
+  },
+  {
+    "customer_id": "ec_9532",
+    "first_name": "Maria",
+    "last_name": "Williams",
+    "email": "mariawilliams32@outlook.com",
+    "phone": "555-555-0032",
+    "created_at": "2023-12-25T02:39:40Z",
+    "shipping_address": {
+      "line1": "954 Main St",
+      "city": "Miami",
+      "region": "FL",
+      "postal_code": "33101",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 1
+  },
+  {
+    "customer_id": "ec_9533",
+    "first_name": "Sean",
+    "last_name": "O'Brien",
+    "email": "seanobrien33@gmail.com",
+    "phone": "",
+    "created_at": "2019-04-06T00:46:11Z",
+    "shipping_address": {
+      "line1": "909 Main St",
+      "city": "Newark",
+      "region": "NJ",
+      "postal_code": "07102",
+      "country": "US"
+    },
+    "marketing_opt_in": false,
+    "total_orders": 18
+  },
+  {
+    "customer_id": "ec_9534",
+    "first_name": "Greta",
+    "last_name": "Schmidt",
+    "email": "gretaschmidt34@icloud.com",
+    "phone": "+1 499 555 0034",
+    "created_at": "2023-10-11T17:37:19Z",
+    "shipping_address": {
+      "line1": "315 Main St",
+      "city": "Jersey City",
+      "region": "NJ",
+      "postal_code": "07302",
+      "country": "US"
+    },
+    "marketing_opt_in": true,
+    "total_orders": 9
+  }
+]

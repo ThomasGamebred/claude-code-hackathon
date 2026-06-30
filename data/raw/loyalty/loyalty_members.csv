@@ -1,0 +1,37 @@
+member_id,full_name,email,phone,tier,points_balance,enrolled_at,birth_date,home_store,pos_customer_id
+LY-50012,María J. García,maria.hernandez@gmail.com,973.555.0142,Gold,"12,500",2021-05-30 16:45:00,1985-07-22,NWK-01,100118
+LY-50019,Robert Smith,bob.smith@yahoo.com,312-555-0188,silver,"3,210",2020-01-10 11:00:00,1979-03-14,CHI-04,100231
+LY-50044,J. Mueller,juergen.mueller@web.de,+49 30 1234567,GOLD,"45,990",2022-04-28 07:30:00,1975-09-02,BER-01,999999
+LY-50061,David Lee,david.lee@gmail.com,206-555-0133,Platinum,"203,400",2019-02-28 22:00:00,1988-12-12,SEA-02,NULL
+LY-50070,Liz Carter,beth.nguyen@gmail.com,617-555-0299,Gold,"9,800",2021-10-15 13:20:00,1986-04-30,BOS-01,
+LY-50090,Aisha Khan,aisha.khan@gmail.com,415-555-0190,Bronze,150,2023-11-05 01:30:00,1995-01-17,SFO-03,NULL
+LY-50100,Karen Jones,karen.jones@gmail.com,962-555-0000,gold,"105,355",2021-09-01 16:19:06,,CHI-04,NULL
+LY-50101,John Khan,john.khan@gmail.com,667-555-0001,Bronze,66124,2021-01-22 15:41:26,1968-06-07,BOS-01,101847
+LY-50102,Maria Brown,maria.brown@gmail.com,216-555-0002,SILVER,97492,2019-06-22 05:19:24,,CHI-04,101611
+LY-50103,Mary Lee,mary.lee@gmail.com,967-555-0003,Platinum,-50,2023-12-21 19:11:09,0000-00-00,CHI-04,
+LY-50104,Jennifer Martinez,jennifer.martinez@gmail.com,643-555-0004,,-50,2022-10-09 11:00:17,1975-10-10,BOS-01,NULL
+LY-50105,Mary O'Brien,mary.obrien@gmail.com,509-555-0005,gold,18795,2021-08-08 12:07:59,0000-00-00,BOS-01,101580
+LY-50106,Karen O'Brien,karen.obrien@gmail.com,806-555-0006,Bronze,"70,055",2021-04-14 20:42:57,1954-01-16,CHI-04,
+LY-50107,Jessica Gonzalez,jessica.gonzalez@gmail.com,767-555-0007,Bronze,-50,2022-01-18 00:38:24,0000-00-00,SEA-02,NULL
+LY-50108,Jessica Khan,jessica.khan@gmail.com,534-555-0008,Bronze,-50,2023-02-17 04:45:24,,CHI-04,101411
+LY-50109,Linda Khan,linda.khan@gmail.com,948-555-0009,Gold,5538,2020-11-12 17:47:05,0000-00-00,CHI-04,
+LY-50110,Sean O'Brien,sean.obrien@gmail.com,651-555-0010,,-50,2022-08-18 00:13:36,0000-00-00,SEA-02,NULL
+LY-50111,Aisha Lee,aisha.lee@gmail.com,546-555-0011,Bronze,-50,2021-09-18 16:29:59,0000-00-00,NWK-01,
+LY-50112,Mary Garcia,mary.garcia@gmail.com,839-555-0012,Silver,"96,128",2021-08-04 00:49:48,,NWK-01,
+LY-50113,Jurgen O'Brien,jurgen.obrien@gmail.com,813-555-0013,Bronze,"33,088",2023-11-18 19:05:36,,SEA-02,NULL
+LY-50114,Richard Weber,richard.weber@gmail.com,727-555-0014,Bronze,-50,2020-09-22 15:28:33,,CHI-04,
+LY-50115,Sean Rodriguez,sean.rodriguez@gmail.com,480-555-0015,gold,9716,2018-12-21 10:17:04,0000-00-00,CHI-04,NULL
+LY-50116,Jennifer O'Brien,jennifer.obrien@gmail.com,904-555-0016,Silver,"237,107",2020-09-09 11:14:01,1994-05-14,CHI-04,101978
+LY-50117,Joseph Williams,joseph.williams@gmail.com,720-555-0017,gold,23680,2019-08-10 14:49:30,,NWK-01,
+LY-50118,Greta Khan,greta.khan@gmail.com,510-555-0018,,-50,2022-12-07 08:29:58,,NWK-01,101180
+LY-50119,Aisha Hernandez,aisha.hernandez@gmail.com,555-555-0019,,"214,075",2018-05-03 15:10:36,,BOS-01,101139
+LY-50120,Joseph Davis,joseph.davis@gmail.com,560-555-0020,SILVER,34549,2022-09-16 21:23:05,,BOS-01,NULL
+LY-50121,Susan Khan,susan.khan@gmail.com,401-555-0021,SILVER,-50,2022-03-22 15:33:15,1961-12-10,NWK-01,101249
+LY-50122,Robert Martinez,robert.martinez@gmail.com,406-555-0022,,71342,2019-01-23 07:27:35,0000-00-00,BOS-01,
+LY-50123,Robert Lopez,robert.lopez@gmail.com,305-555-0023,Bronze,"40,979",2023-06-26 01:59:37,1961-10-27,NWK-01,101370
+LY-50124,Michael Jones,michael.jones@gmail.com,850-555-0024,Platinum,7940,2020-01-03 11:27:01,1952-09-04,CHI-04,NULL
+LY-50125,Joseph Anderson,joseph.anderson@gmail.com,709-555-0025,Gold,"125,525",2018-11-08 13:29:35,,SEA-02,
+LY-50126,John Nguyen,john.nguyen@gmail.com,249-555-0026,,82730,2023-08-17 11:47:43,,BOS-01,
+LY-50127,Sean Thomas,sean.thomas@gmail.com,809-555-0027,gold,"153,957",2019-09-09 18:44:18,,BOS-01,
+LY-50128,John Rodriguez,john.rodriguez@gmail.com,532-555-0028,Platinum,37314,2022-02-17 08:52:09,0000-00-00,CHI-04,
+LY-50129,Mary Williams,mary.williams@gmail.com,343-555-0029,,"193,705",2018-09-03 03:58:58,1959-10-28,SEA-02,101270

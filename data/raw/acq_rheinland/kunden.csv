@@ -1,0 +1,30 @@
+Kundennr;Name;Strasse;PLZ;Ort;Telefon;Email;Geburtsdatum;Umsatz;Newsletter
+RH-1001;Jürgen Müller;Hauptstraße 12;10115;Berlin;+49 30 1234567;juergen.mueller@web.de;02.09.1975;12.840,55;Ja
+RH-1188;JÃ¼rgen MÃ¼ller;HauptstraÃŸe 12;10115;Berlin;030 1234567;j.mueller@web.de;02.09.1975;0,00;Nein
+RH-1042;BjÃ¶rn SchÃ¶nfeld;KÃ¶lner Ring 9;50667;KÃ¶ln;+49 221 5550199;bjoern.schoenfeld@gmx.de;17.03.1982;1.299,00;Ja
+RH-1055;Greß, Greta;Weißenburger Allee 3;80331;München;089 5550042;greta.gress@t-online.de;30.11.1990;845,90;Nein
+RH-1100;Mia Wagner;Wagnerstraße 32;25756;Berlin;+49 34 5150750;mia.wagner@web.de;03.08.1951;1.415,52;Ja
+RH-1101;Anna Schulz;Schulzstraße 27;56873;Düsseldorf;+49 491 3881376;anna.schulz@t-online.de;02.06.1981;8.999,56;Ja
+RH-1102;Felix Koch;Kochstraße 28;52883;Berlin;+49 72 6880199;felix.koch@t-online.de;09.07.1996;768,10;Nein
+RH-1103;Greta Koch;Kochstraße 81;61025;Berlin;+49 746 4967462;greta.koch@t-online.de;06.08.1954;4.582,04;Nein
+RH-1104;Mia Weber;Weberstraße 32;52358;Köln;+49 279 5684506;mia.weber@gmx.de;04.10.1982;5.297,60;Nein
+RH-1105;Felix Koch;Kochstraße 34;48295;Berlin;+49 641 7578622;felix.koch@gmx.de;20.03.1950;4.366,43;Ja
+RH-1106;Hans Schulz;Schulzstraße 56;25663;Köln;+49 43 4560639;hans.schulz@t-online.de;19.10.1951;1.603,71;Nein
+RH-1107;Jurgen Schmidt;Schmidtstraße 48;48800;Köln;+49 613 9805212;jurgen.schmidt@web.de;28.11.1970;2.578,15;Ja
+RH-1108;Felix Hoffmann;Hoffmannstraße 37;84508;München;+49 113 2172967;felix.hoffmann@t-online.de;10.09.1952;5.144,09;Ja
+RH-1109;Lukas Hoffmann;Hoffmannstraße 75;73228;München;+49 145 8869115;lukas.hoffmann@web.de;28.07.1956;6.160,33;Ja
+RH-1110;Lukas Wagner;Wagnerstraße 79;60983;Düsseldorf;+49 136 4354559;lukas.wagner@web.de;19.03.1963;4.827,32;Ja
+RH-1111;Jurgen Bauer;Bauerstraße 60;63296;München;+49 431 1913381;jurgen.bauer@web.de;22.08.1947;4.534,37;Ja
+RH-1112;Mia Weber;Weberstraße 67;24811;Hamburg;+49 504 2947578;mia.weber@t-online.de;14.08.1993;680,54;Nein
+RH-1113;Greta Becker;Beckerstraße 11;57290;München;+49 193 9765310;greta.becker@t-online.de;19.12.1967;3.578,47;Ja
+RH-1114;Hans Weber;Weberstraße 83;93539;Düsseldorf;+49 631 9275327;hans.weber@web.de;02.11.1989;1.970,62;Ja
+RH-1115;Felix Bauer;Bauerstraße 72;98316;Köln;+49 631 5853825;felix.bauer@t-online.de;17.07.1973;1.135,41;Nein
+RH-1116;Felix Schmidt;Schmidtstraße 33;26108;Köln;+49 816 8455980;felix.schmidt@web.de;23.05.1982;5.019,36;Nein
+RH-1117;Hans Becker;Beckerstraße 97;85044;München;+49 761 9449924;hans.becker@gmx.de;15.12.1972;1.380,83;Ja
+RH-1118;Anna Bauer;Bauerstraße 71;59095;Hamburg;+49 194 2831300;anna.bauer@gmx.de;17.01.1953;8.112,60;Ja
+RH-1119;Greta Schulz;Schulzstraße 68;62105;Düsseldorf;+49 415 4161790;greta.schulz@gmx.de;04.04.1972;1.569,28;Nein
+RH-1120;Hans Schmidt;Schmidtstraße 43;30332;München;+49 574 7490649;hans.schmidt@web.de;12.02.1992;6.295,94;Nein
+RH-1121;Greta Schmidt;Schmidtstraße 1;78162;Köln;+49 893 2925223;greta.schmidt@web.de;25.09.1965;2.323,77;Nein
+RH-1122;Jurgen Hoffmann;Hoffmannstraße 21;21085;Düsseldorf;+49 550 4318558;jurgen.hoffmann@gmx.de;04.03.1955;1.974,09;Ja
+RH-1123;Jurgen Schmidt;Schmidtstraße 52;18638;Berlin;+49 211 9567194;jurgen.schmidt@gmx.de;15.10.1945;5.801,24;Ja
+RH-1124;Jurgen Koch;Kochstraße 27;48141;München;+49 609 1956846;jurgen.koch@gmx.de;25.05.1959;7.452,89;Nein
