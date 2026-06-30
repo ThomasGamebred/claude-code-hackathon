@@ -3,8 +3,14 @@
 > Seven systems. Zero agreement on what a "customer" is. One trustworthy record out the other end.
 
 ## Participants
-- Julian Martin (PM · Architect · Data Engineer · Tester — played every role)
+- Julian Martin (Architect · Data Engineer)
+- Korbinian Kipp (Data Engineer · Ingestion & lineage)
+- Daniel Hartig (Quality · Eval & data-quality guardrails)
+- Kay Kartschewsky (PM/BA · Catalog & docs)
+- Sebastian Loer (Platform · MCP server, hooks & CI)
 - Claude Opus 4.8 (pair engineer, via Claude Code)
+
+*We staffed every role anyway and rotated — Claude Code doesn't care what your title is.*
 
 ## Scenario
 **Scenario 3: Data Engineering — "The Swamp."** Fabrikam Retail has seven source systems
